@@ -3,7 +3,7 @@ import Logo from "@/assets/icons/logo-small.svg";
 import { DefaultTypography } from "../../shared/default-typography";
 import { DefaultButton } from "../../shared/default-button";
 
-export const NavBar = () => {
+export const Header = () => {
   return (
     <S.Wrapper>
       <S.LogoWrapp>

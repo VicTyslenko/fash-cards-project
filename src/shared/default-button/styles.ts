@@ -7,6 +7,7 @@ export const Button = styled.button`
   min-height: 44px;
   font-weight: 600;
   color: #2e1401;
+  border: 1px solid #2e1401;
   font-size: 16px;
   border-radius: 999px;
   line-height: 19.2px;

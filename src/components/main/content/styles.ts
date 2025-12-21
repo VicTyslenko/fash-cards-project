@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  background-color: #fff;
   display: flex;
-  
+  gap: 32px;
 `;

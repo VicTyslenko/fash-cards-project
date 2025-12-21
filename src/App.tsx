@@ -1,11 +1,10 @@
 import * as S from "./app-styles";
-import { MainContent } from "./components/main-content";
-
+import { Main } from "./components/main";
 function App() {
   return (
-    <S.MainWrapp>
-      <MainContent />
-    </S.MainWrapp>
+    <S.AppWrapper>
+      <Main />
+    </S.AppWrapper>
   );
 }
 
