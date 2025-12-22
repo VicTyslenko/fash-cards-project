@@ -5,17 +5,24 @@ export const Wrapper = styled.div`
   position: relative;
   padding: 0 20px;
 `;
-export const StyledButton = styled(DefaultButton)`
+
+type StyledButtonProps = {
+  $isQuestion: boolean;
+};
+
+export const StyledButton = styled(DefaultButton)<StyledButtonProps>`
   position: relative;
   padding: 24px;
   border-radius: 16px;
-  background: #fc8ae5;
+  background: ${({ $isQuestion }) => ($isQuestion ? "#FC8AE5" : "#92ADEB")};
   width: 100%;
   height: 100%;
   box-shadow: 2px 2px 0 0 #2e1401;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  min-height: 312px;
   margin-bottom: 20px;
 
   & .blue-star {
@@ -43,7 +50,12 @@ export const StyledButton = styled(DefaultButton)`
     font-weight: 500;
     line-height: 120%;
     opacity: 0.8;
-    margin-bottom: 96px;
+  }
+  & .title-answer {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
   }
 `;
 
@@ -59,9 +71,21 @@ export const CategoryInfo = styled.div`
   line-height: 130%;
   letter-spacing: -0.36px;
   background-color: #fff;
-  margin-bottom: 92px;
+
+  &.mastered {
+    background-color: #47d9c9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
 `;
 
+export const MiddleBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
 export const Title = styled.h1`
   text-align: center;
   font-size: 40px;
@@ -111,5 +135,8 @@ export const ActionsWrapp = styled.div`
   }
   & .yellow_btn {
     background: #f8cb46;
+  }
+  & .mastered_btn {
+    opacity: 0.5;
   }
 `;
