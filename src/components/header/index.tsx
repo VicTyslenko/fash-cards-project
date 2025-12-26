@@ -10,6 +10,7 @@ export const Header = () => {
         <img src={Logo} alt="logo" />
         <DefaultTypography>Flashcard</DefaultTypography>
       </S.LogoWrapp>
+
       <S.ButtonsWrapp>
         <DefaultButton className="study_btn">Study Mode</DefaultButton>
         <DefaultButton className="all-cards_btn">All cards</DefaultButton>

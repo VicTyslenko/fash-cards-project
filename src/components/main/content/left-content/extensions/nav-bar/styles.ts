@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding: 20px;
+padding:20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #2e1401;
-  margin-bottom: 44px;
   & .default-button {
     border: 1px solid #2e1401;
     display: flex;

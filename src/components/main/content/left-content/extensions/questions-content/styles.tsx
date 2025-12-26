@@ -2,8 +2,12 @@ import styled from "styled-components";
 import { DefaultButton } from "../../../../../../shared/default-button";
 
 export const Wrapper = styled.div`
-  position: relative;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin-top: 43px;
 `;
 
 type StyledButtonProps = {
@@ -22,8 +26,6 @@ export const StyledButton = styled(DefaultButton)<StyledButtonProps>`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  min-height: 312px;
-  margin-bottom: 20px;
 
   & .blue-star {
     position: absolute;
@@ -120,10 +122,10 @@ export const ProgressiveBar = styled.div`
 export const ActionsWrapp = styled.div`
   display: flex;
   gap: 20px;
+  margin: 20px 0;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-bottom: 20px;
 
   & .default-button {
     display: flex;

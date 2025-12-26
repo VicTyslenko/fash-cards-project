@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 3;
-  width: 100%;
-  height: auto;
   border-radius: 16px;
   border-top: 3px solid #2e1401;
   border-right: 3px solid #2e1401;

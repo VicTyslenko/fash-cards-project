@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { DefaultTypography } from "../../../../../../shared/default-typography";
 import YellowStar from "@/assets/icons/pattern-star-yellow.svg";
@@ -11,6 +11,7 @@ import IconReset from "@/assets/icons/icon-reset.svg";
 import { DefaultButton } from "../../../../../../shared/default-button";
 
 import * as S from "./styles";
+
 export const QuestionsContent = () => {
   const [isQuestion, setIsQuestion] = useState(true);
   const [isMastered, setIsMastered] = useState(false);

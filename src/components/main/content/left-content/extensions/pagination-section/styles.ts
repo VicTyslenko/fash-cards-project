@@ -7,6 +7,7 @@ export const Wrapper = styled.div`
   align-items: center;
   border-top: 1px solid #2e1401;
 
+
   & .default-button {
     display: flex;
     align-items: center;
