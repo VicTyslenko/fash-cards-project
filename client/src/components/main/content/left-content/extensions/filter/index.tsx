@@ -7,20 +7,19 @@ import ShuffleIcon from "@/assets/icons/icon-shuffle.svg";
 import * as S from "./styles";
 
 export const Filter = () => {
-  const { cardsData, error, isLoading, categories } = useFilter();
+  const { cardsData, error, isLoading, categories, handleSetCategory, currentCategory } = useFilter();
 
   return (
     <S.Wrapper>
       <S.FlexWrapp>
         <S.DropDown>
-          <S.Select>
-            <option value="">Web Development</option>
-            {categories &&
-              categories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
-              ))}
+          <S.Select onChange={(event) => handleSetCategory(event)}>
+            <option value="all">{currentCategory}</option>
+            {categories.map((category) => (
+              <option key={category} value={category.toLowerCase()}>
+                {category}
+              </option>
+            ))}
           </S.Select>
           <img src={ArrowDown} alt="" className="arrow" />
         </S.DropDown>

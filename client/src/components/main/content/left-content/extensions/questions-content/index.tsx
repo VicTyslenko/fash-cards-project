@@ -4,26 +4,27 @@ import { DefaultTypography } from "../../../../../../shared/default-typography";
 import YellowStar from "@/assets/icons/pattern-star-yellow.svg";
 import BlueStar from "@/assets/icons/pattern-star-blue.svg";
 import IconMastered from "@/assets/icons/icon-mastered.svg";
-
 import PinkStar from "@/assets/icons/pattern-star-pink.svg";
 import IconCheck from "@/assets/icons/icon-check.svg";
 import IconReset from "@/assets/icons/icon-reset.svg";
 import { DefaultButton } from "../../../../../../shared/default-button";
+import { useQuestionsContent } from "./hooks";
 
 import * as S from "./styles";
 
 export const QuestionsContent = () => {
+  const { categoryInfo, questions, answers } = useQuestionsContent();
   const [isQuestion, setIsQuestion] = useState(true);
   const [isMastered, setIsMastered] = useState(false);
 
   return (
     <S.Wrapper>
       <S.StyledButton onClick={() => setIsQuestion((prev) => !prev)} $isQuestion={isQuestion}>
-        <S.CategoryInfo>Web Development</S.CategoryInfo>
+        <S.CategoryInfo>{categoryInfo}</S.CategoryInfo>
         {isQuestion ? (
           <S.MiddleBlock>
             <DefaultTypography as="h1" className="title">
-              The Question
+              {questions[0]}
             </DefaultTypography>
             <DefaultTypography className="answer">Click to reveal answer</DefaultTypography>
           </S.MiddleBlock>
@@ -31,7 +32,7 @@ export const QuestionsContent = () => {
           <S.MiddleBlock>
             <DefaultTypography className="answer">Answer:</DefaultTypography>
             <DefaultTypography as="h1" className="title-answer">
-              The answer
+              {answers[0]}
             </DefaultTypography>
           </S.MiddleBlock>
         )}

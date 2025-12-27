@@ -31,6 +31,7 @@ export const DropDown = styled.div`
   }
 `;
 export const Select = styled.select`
+  max-width: 140px;
   appearance: none;
   padding: 12px 44px 12px 16px;
   border-radius: 999px;
