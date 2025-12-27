@@ -1,13 +1,13 @@
-import { NavBar } from "./extensions/nav-bar";
 import { QuestionsContent } from "./extensions/questions-content";
 import { PaginationSection } from "./extensions/pagination-section";
+import { Filter } from "./extensions/filter";
 
 import * as S from "./styles";
 
 export const LeftContent = () => {
   return (
     <S.Wrapper>
-      <NavBar />
+      <Filter />
       <QuestionsContent />
       <PaginationSection />
     </S.Wrapper>

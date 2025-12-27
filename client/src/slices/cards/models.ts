@@ -1,11 +1,12 @@
-type Card = {
+export type Card = {
   id: string;
   question: string;
   answer: string;
+  category: string;
   known_counter: number;
 };
 
-type CardProps = {
+export type CardProps = {
   cards: Card[] | null;
 };
 

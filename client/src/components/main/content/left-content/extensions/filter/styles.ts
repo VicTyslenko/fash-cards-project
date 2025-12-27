@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-padding:20px;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #2e1401;
+
   & .default-button {
     border: 1px solid #2e1401;
     display: flex;
@@ -40,6 +41,7 @@ export const Select = styled.select`
   font-style: normal;
   font-weight: 500;
   line-height: 120%;
+  cursor: pointer;
 `;
 
 export const CheckBoxWrapp = styled.div`
