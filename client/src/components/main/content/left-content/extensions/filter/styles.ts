@@ -28,6 +28,7 @@ export const DropDown = styled.div`
     position: absolute;
     top: 15px;
     right: 16px;
+    cursor: pointer;
   }
 `;
 export const Select = styled.select`

@@ -9,12 +9,13 @@ import IconCheck from "@/assets/icons/icon-check.svg";
 import IconReset from "@/assets/icons/icon-reset.svg";
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { useQuestionsContent } from "./hooks";
+import type { QuestionProps } from "../models";
 
 import * as S from "./styles";
 
-export const QuestionsContent = () => {
-  const { categoryInfo, questions, answers } = useQuestionsContent();
-  const [isQuestion, setIsQuestion] = useState(true);
+export const QuestionsContent = ({ isQuestion, setIsQuestion }: QuestionProps) => {
+  const { categoryInfo, questions, answers, currentIndex } = useQuestionsContent();
+
   const [isMastered, setIsMastered] = useState(false);
 
   return (
@@ -24,7 +25,7 @@ export const QuestionsContent = () => {
         {isQuestion ? (
           <S.MiddleBlock>
             <DefaultTypography as="h1" className="title">
-              {questions[0]}
+              {questions[currentIndex - 1]}
             </DefaultTypography>
             <DefaultTypography className="answer">Click to reveal answer</DefaultTypography>
           </S.MiddleBlock>
@@ -32,7 +33,7 @@ export const QuestionsContent = () => {
           <S.MiddleBlock>
             <DefaultTypography className="answer">Answer:</DefaultTypography>
             <DefaultTypography as="h1" className="title-answer">
-              {answers[0]}
+              {answers[currentIndex - 1]}
             </DefaultTypography>
           </S.MiddleBlock>
         )}
