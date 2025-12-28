@@ -1,5 +1,6 @@
 import { useGetCardsQuery } from "../../../../../../api/apiSlice";
 import { useSearchParams } from "react-router";
+import { ALL_CATEGORY } from "./utils";
 
 export const useFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -7,14 +8,14 @@ export const useFilter = () => {
   const handleSetCategory = (e: React.ChangeEvent<HTMLSelectElement>) =>
     setSearchParams((searchParams) => {
       const newValue = e.target.value;
-      searchParams.set("category", newValue.toLowerCase());
+      searchParams.set("category", newValue);
       return searchParams;
     });
   const currentCategory = searchParams.get("category") || "All Categories";
 
   const { data: cardsData, error, isLoading } = useGetCardsQuery();
 
-  const categories = [...new Set(cardsData?.map((c) => c.category) ?? [])];
+  const categories = [ALL_CATEGORY, ...new Set(cardsData?.map((c) => c.category) ?? [])];
 
   return { cardsData, error, isLoading, categories, handleSetCategory, currentCategory };
 };

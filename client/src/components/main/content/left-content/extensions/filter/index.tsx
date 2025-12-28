@@ -8,15 +8,13 @@ import * as S from "./styles";
 
 export const Filter = () => {
   const { cardsData, error, isLoading, categories, handleSetCategory, currentCategory } = useFilter();
-
   return (
     <S.Wrapper>
       <S.FlexWrapp>
         <S.DropDown>
-          <S.Select onChange={(event) => handleSetCategory(event)}>
-            <option value="all">{currentCategory}</option>
+          <S.Select onChange={(event) => handleSetCategory(event)} value={currentCategory}>
             {categories.map((category) => (
-              <option key={category} value={category.toLowerCase()}>
+              <option key={category} value={category}>
                 {category}
               </option>
             ))}
