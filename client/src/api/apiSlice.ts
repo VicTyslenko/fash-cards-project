@@ -8,7 +8,13 @@ export const apiSlice = createApi({
     getCards: builder.query<Card[], void>({
       query: () => "/cards",
     }),
+    updateCard: builder.mutation<Card, { id: string }>({
+      query: ({ id }) => ({
+        url: `card/${id}`,
+        method: "PATCH",
+      }),
+    }),
   }),
 });
 
-export const { useGetCardsQuery } = apiSlice;
+export const { useGetCardsQuery, useUpdateCardMutation } = apiSlice;

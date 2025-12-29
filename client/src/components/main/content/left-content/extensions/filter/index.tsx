@@ -3,10 +3,13 @@ import { DefaultTypography } from "../../../../../../shared/default-typography";
 import { useFilter } from "./hooks";
 import ArrowDown from "@/assets/icons/icon-chevron-down.svg";
 import ShuffleIcon from "@/assets/icons/icon-shuffle.svg";
-import type { QuestionProps } from "../models";
 import * as S from "./styles";
 
-export const Filter = ({ setIsQuestion }: QuestionProps) => {
+type FilterProps = {
+  setIsQuestion: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export const Filter = ({ setIsQuestion }: FilterProps) => {
   const { categories, handleSetCategory, currentCategory } = useFilter();
   return (
     <S.Wrapper>

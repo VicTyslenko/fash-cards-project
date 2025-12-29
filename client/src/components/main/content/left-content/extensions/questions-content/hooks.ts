@@ -1,19 +1,32 @@
-import { useSearchParams } from "react-router";
-import { useGetCardsQuery } from "../../../../../../api/apiSlice";
-import { ALL_CATEGORY } from "../filter/utils";
+import { useState, useEffect } from "react";
+import type { Card } from "../../../../../../slices/cards/models";
+import { useUpdateCardMutation } from "../../../../../../api/apiSlice";
 
-export const useQuestionsContent = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+export const useQuestionsContent = (currentCard?: Card) => {
+  const MAX_KNOWN = 5;
 
-  const categoryInfo = searchParams.get("category") ?? ALL_CATEGORY;
-  const currentIndex = Number(searchParams.get("card")) || 1;
+  const [updatedProgress, setUpdatedProgress] = useState<number | null>(null);
 
-  const { data } = useGetCardsQuery();
+  const [updateCard, { data: updatedCardData, isLoading }] = useUpdateCardMutation();
 
-  const filteredData = data?.filter((el) => categoryInfo === ALL_CATEGORY || el.category === categoryInfo);
+  const handleCardUpdate = async () => {
+    if (!currentCard) return;
+    try {
+      const updated = await updateCard({ id: currentCard.id }).unwrap();
 
-  const questions = filteredData?.map((el) => el.question) || [];
-  const answers = filteredData?.map((el) => el.answer) || [];
+      setUpdatedProgress(updated.known_count);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const progressCount = updatedProgress ?? currentCard?.known_count ?? 0;
+  const isMastered = progressCount >= MAX_KNOWN;
 
-  return { categoryInfo, questions, answers, filteredData, currentIndex };
+  useEffect(() => {
+    // setUpdatedProgress(null);
+
+    console.log(progressCount, "known_count:", currentCard?.known_count);
+  }, [currentCard?.id, progressCount, currentCard?.known_count]);
+
+  return { handleCardUpdate, updatedProgress, progressCount, isMastered };
 };

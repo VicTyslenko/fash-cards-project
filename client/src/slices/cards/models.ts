@@ -3,7 +3,7 @@ export type Card = {
   question: string;
   answer: string;
   category: string;
-  known_counter: number;
+  known_count: number;
 };
 
 export type CardProps = {

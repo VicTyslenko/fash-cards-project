@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-
+import type { QuestionProps } from "../models";
 import { DefaultTypography } from "../../../../../../shared/default-typography";
 import YellowStar from "@/assets/icons/pattern-star-yellow.svg";
 import BlueStar from "@/assets/icons/pattern-star-blue.svg";
@@ -9,14 +8,13 @@ import IconCheck from "@/assets/icons/icon-check.svg";
 import IconReset from "@/assets/icons/icon-reset.svg";
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { useQuestionsContent } from "./hooks";
-import type { QuestionProps } from "../models";
 
 import * as S from "./styles";
 
-export const QuestionsContent = ({ isQuestion, setIsQuestion }: QuestionProps) => {
-  const { categoryInfo, questions, answers, currentIndex } = useQuestionsContent();
+export const QuestionsContent = ({ isQuestion, setIsQuestion, currentIndex, filteredData, categoryInfo }: QuestionProps) => {
+  const currentCard = filteredData?.[currentIndex - 1];
 
-  const [isMastered, setIsMastered] = useState(false);
+  const { handleCardUpdate, progressCount, isMastered } = useQuestionsContent(currentCard);
 
   return (
     <S.Wrapper>
@@ -25,7 +23,7 @@ export const QuestionsContent = ({ isQuestion, setIsQuestion }: QuestionProps) =
         {isQuestion ? (
           <S.MiddleBlock>
             <DefaultTypography as="h1" className="title">
-              {questions[currentIndex - 1]}
+              {currentCard?.question ?? ""}
             </DefaultTypography>
             <DefaultTypography className="answer">Click to reveal answer</DefaultTypography>
           </S.MiddleBlock>
@@ -33,14 +31,14 @@ export const QuestionsContent = ({ isQuestion, setIsQuestion }: QuestionProps) =
           <S.MiddleBlock>
             <DefaultTypography className="answer">Answer:</DefaultTypography>
             <DefaultTypography as="h1" className="title-answer">
-              {answers[currentIndex - 1]}
+              {currentCard.answer ?? ""}
             </DefaultTypography>
           </S.MiddleBlock>
         )}
         {!isMastered ? (
           <S.BarWrapp>
             <S.ProgressiveBar />
-            <DefaultTypography className="score">0/5</DefaultTypography>
+            <DefaultTypography className="score">{`${progressCount}/5`}</DefaultTypography>
           </S.BarWrapp>
         ) : (
           <S.CategoryInfo className="mastered">
@@ -56,7 +54,8 @@ export const QuestionsContent = ({ isQuestion, setIsQuestion }: QuestionProps) =
       </S.StyledButton>
 
       <S.ActionsWrapp>
-        <DefaultButton className={`${!isMastered ? "yellow_btn" : "yellow_btn mastered_btn"}`}>
+        {/* here */}
+        <DefaultButton onClick={handleCardUpdate} className={`${!isMastered ? "yellow_btn" : "yellow_btn mastered_btn"}`}>
           <img src={IconCheck} alt="check icon" />
           <DefaultTypography>{!isMastered ? "I Know This" : "Already Mastered"}</DefaultTypography>
         </DefaultButton>
