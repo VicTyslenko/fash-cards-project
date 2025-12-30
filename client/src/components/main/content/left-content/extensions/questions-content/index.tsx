@@ -11,10 +11,8 @@ import { useQuestionsContent } from "./hooks";
 
 import * as S from "./styles";
 
-export const QuestionsContent = ({ isQuestion, setIsQuestion, currentIndex, filteredData, categoryInfo }: QuestionProps) => {
-  const currentCard = filteredData?.[currentIndex - 1];
-
-  const { handleCardUpdate, progressCount, isMastered } = useQuestionsContent(currentCard);
+export const QuestionsContent = ({ isQuestion, setIsQuestion, currentCard, categoryInfo }: QuestionProps) => {
+  const { handleCardUpdate, progressCount, isMastered, handleResetCard } = useQuestionsContent(currentCard);
 
   return (
     <S.Wrapper>
@@ -60,7 +58,7 @@ export const QuestionsContent = ({ isQuestion, setIsQuestion, currentIndex, filt
           <DefaultTypography>{!isMastered ? "I Know This" : "Already Mastered"}</DefaultTypography>
         </DefaultButton>
 
-        <DefaultButton>
+        <DefaultButton onClick={handleResetCard}>
           <img src={IconReset} alt="check icon" />
           <DefaultTypography>Reset Progress</DefaultTypography>
         </DefaultButton>

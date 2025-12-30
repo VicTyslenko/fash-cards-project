@@ -34,3 +34,22 @@ export const updateCard = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
+export const resetCard = async (req, res) => {
+  const { id: cardId } = req.params;
+  try {
+    const { rows } = await pool.query(
+      `
+  UPDATE flashcards
+  SET known_count = 0
+  WHERE id = $1
+  RETURNING *
+  `[cardId]
+    );
+
+    res.json(rows[0]);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+};

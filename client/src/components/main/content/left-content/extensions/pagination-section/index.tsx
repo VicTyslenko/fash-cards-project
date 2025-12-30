@@ -48,8 +48,8 @@ export const PaginationSection = ({ filteredData, currentIndex }: Props) => {
       </DefaultTypography>
 
       <DefaultButton onClick={handleNextCard}>
-        <img src={RightIcon} alt="left icon" />
         <DefaultTypography>Next</DefaultTypography>
+        <img src={RightIcon} alt="left icon" />
       </DefaultButton>
     </S.Wrapper>
   );

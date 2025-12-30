@@ -16,5 +16,6 @@ export const useLeftContent = () => {
   const questions = filteredData?.map((el) => el.question) || [];
   const answers = filteredData?.map((el) => el.answer) || [];
 
-  return { isQuestion, setIsQuestion, filteredData, categoryInfo, questions, answers, currentIndex };
+  const currentCard = filteredData?.[currentIndex - 1];
+  return { isQuestion, setIsQuestion, filteredData, categoryInfo, questions, answers, currentIndex, currentCard };
 };
