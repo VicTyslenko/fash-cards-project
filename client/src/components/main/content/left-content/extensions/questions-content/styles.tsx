@@ -112,12 +112,23 @@ export const BarWrapp = styled.div`
   }
 `;
 
-export const ProgressiveBar = styled.div`
+export const ProgressBar = styled.progress`
+  appearance: none;
+  -webkit-appearance: none;
+
   width: 60px;
   height: 8px;
-  border-radius: 999px;
-  border: 1px solid #2e1401;
-  background-color: #fff;
+
+  &::-webkit-progress-bar {
+    border: 1px solid #2e1401;
+    border-radius: 999px;
+    background-color: #fff;
+  }
+
+  &::-webkit-progress-value {
+   
+    background-color: #11b311;
+  }
 `;
 
 export const ActionsWrapp = styled.div`

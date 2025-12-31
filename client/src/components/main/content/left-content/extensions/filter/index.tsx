@@ -1,16 +1,14 @@
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { DefaultTypography } from "../../../../../../shared/default-typography";
-import { useFilter } from "./hooks";
+
 import ArrowDown from "@/assets/icons/icon-chevron-down.svg";
 import ShuffleIcon from "@/assets/icons/icon-shuffle.svg";
+import { useFilter } from "./hooks";
+
 import * as S from "./styles";
 
-type FilterProps = {
-  setIsQuestion: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export const Filter = ({ setIsQuestion }: FilterProps) => {
-  const { categories, handleSetCategory, currentCategory } = useFilter();
+export const Filter = () => {
+  const { categories, handleSetCategory, currentCategory, handleSetQuestion } = useFilter();
   return (
     <S.Wrapper>
       <S.FlexWrapp>
@@ -18,7 +16,7 @@ export const Filter = ({ setIsQuestion }: FilterProps) => {
           <S.Select
             onChange={(event) => {
               handleSetCategory(event);
-              setIsQuestion(true);
+              handleSetQuestion();
             }}
             value={currentCategory}
           >

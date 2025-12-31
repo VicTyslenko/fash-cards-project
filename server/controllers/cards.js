@@ -37,16 +37,20 @@ export const updateCard = async (req, res) => {
 
 export const resetCard = async (req, res) => {
   const { id: cardId } = req.params;
+
   try {
     const { rows } = await pool.query(
-      `
-  UPDATE flashcards
-  SET known_count = 0
-  WHERE id = $1
-  RETURNING *
-  `[cardId]
+      `UPDATE flashcards
+    SET known_count = 0
+    WHERE id = $1
+    RETURNING *
+    `,
+      [cardId]
     );
 
+    if (rows.length === 0) {
+      return res.status(404).json({ message: "Card not found" });
+    }
     res.json(rows[0]);
   } catch (error) {
     console.log(error);

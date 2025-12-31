@@ -4,19 +4,23 @@ import YellowStar from "@/assets/icons/pattern-star-yellow.svg";
 import BlueStar from "@/assets/icons/pattern-star-blue.svg";
 import IconMastered from "@/assets/icons/icon-mastered.svg";
 import PinkStar from "@/assets/icons/pattern-star-pink.svg";
-import IconCheck from "@/assets/icons/icon-check.svg";
+import IconCheck from "@/assets/icons/icon-circle-check.svg";
 import IconReset from "@/assets/icons/icon-reset.svg";
 import { DefaultButton } from "../../../../../../shared/default-button";
+import { MAX_KNOWN } from "./utils";
 import { useQuestionsContent } from "./hooks";
 
 import * as S from "./styles";
 
-export const QuestionsContent = ({ isQuestion, setIsQuestion, currentCard, categoryInfo }: QuestionProps) => {
-  const { handleCardUpdate, progressCount, isMastered, handleResetCard } = useQuestionsContent(currentCard);
+export const QuestionsContent = ({ currentCard, categoryInfo, totalCards }: QuestionProps) => {
+  const { handleCardUpdate, progressCount, isMastered, handleResetCard, handleToggleCard, isQuestion } = useQuestionsContent({
+    currentCard,
+    totalCards,
+  });
 
   return (
     <S.Wrapper>
-      <S.StyledButton onClick={() => setIsQuestion((prev) => !prev)} $isQuestion={isQuestion}>
+      <S.StyledButton onClick={handleToggleCard} $isQuestion={isQuestion}>
         <S.CategoryInfo>{categoryInfo}</S.CategoryInfo>
         {isQuestion ? (
           <S.MiddleBlock>
@@ -35,8 +39,8 @@ export const QuestionsContent = ({ isQuestion, setIsQuestion, currentCard, categ
         )}
         {!isMastered ? (
           <S.BarWrapp>
-            <S.ProgressiveBar />
-            <DefaultTypography className="score">{`${progressCount}/5`}</DefaultTypography>
+            <S.ProgressBar value={progressCount} max={MAX_KNOWN} />
+            <DefaultTypography className="score">{`${progressCount}/${MAX_KNOWN}`}</DefaultTypography>
           </S.BarWrapp>
         ) : (
           <S.CategoryInfo className="mastered">
@@ -52,11 +56,17 @@ export const QuestionsContent = ({ isQuestion, setIsQuestion, currentCard, categ
       </S.StyledButton>
 
       <S.ActionsWrapp>
-        {/* here */}
-        <DefaultButton onClick={handleCardUpdate} className={`${!isMastered ? "yellow_btn" : "yellow_btn mastered_btn"}`}>
-          <img src={IconCheck} alt="check icon" />
-          <DefaultTypography>{!isMastered ? "I Know This" : "Already Mastered"}</DefaultTypography>
-        </DefaultButton>
+        {!isMastered ? (
+          <DefaultButton onClick={handleCardUpdate} className="yellow_btn">
+            <img src={IconCheck} alt="check icon" />
+            <DefaultTypography>I Know This</DefaultTypography>
+          </DefaultButton>
+        ) : (
+          <DefaultButton className="yellow_btn mastered_btn">
+            <img src={IconCheck} alt="check icon" />
+            <DefaultTypography>Already Mastered</DefaultTypography>
+          </DefaultButton>
+        )}
 
         <DefaultButton onClick={handleResetCard}>
           <img src={IconReset} alt="check icon" />

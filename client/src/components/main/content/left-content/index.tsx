@@ -6,13 +6,13 @@ import { useLeftContent } from "./hooks";
 import * as S from "./styles";
 
 export const LeftContent = () => {
-  const { isQuestion, setIsQuestion, currentIndex, filteredData, categoryInfo, currentCard } = useLeftContent();
+  const { categoryInfo, currentCard, totalFilteredCards } = useLeftContent();
 
   return (
     <S.Wrapper>
-      <Filter setIsQuestion={setIsQuestion} />
-      <QuestionsContent categoryInfo={categoryInfo} isQuestion={isQuestion} setIsQuestion={setIsQuestion} currentCard={currentCard} />
-      <PaginationSection currentIndex={currentIndex} filteredData={filteredData} />
+      <Filter />
+      <QuestionsContent categoryInfo={categoryInfo} currentCard={currentCard} totalCards={totalFilteredCards} />
+      <PaginationSection total={totalFilteredCards} />
     </S.Wrapper>
   );
 };

@@ -8,8 +8,10 @@ export type Card = {
 
 export type CardProps = {
   cards: Card[] | null;
+  isQuestion: boolean;
 };
 
 export const initialState: CardProps = {
   cards: null,
+  isQuestion: true,
 };
