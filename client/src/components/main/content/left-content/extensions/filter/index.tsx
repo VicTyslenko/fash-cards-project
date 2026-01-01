@@ -8,7 +8,9 @@ import { useFilter } from "./hooks";
 import * as S from "./styles";
 
 export const Filter = ({ data }: FilterProps) => {
-  const { categories, handleSetCategory, currentCategory, handleSetQuestion, handleHideMastered, masteredHidden } = useFilter({ data });
+  const { categories, handleSetCategory, currentCategory, handleSetQuestion, handleHideMastered, masteredHidden, handleShuffleCards } = useFilter({
+    data,
+  });
 
   return (
     <S.Wrapper>
@@ -35,7 +37,7 @@ export const Filter = ({ data }: FilterProps) => {
         </S.CheckBoxWrapp>
       </S.FlexWrapp>
 
-      <DefaultButton>
+      <DefaultButton >
         <img src={ShuffleIcon} alt="shuffle-icon" />
         <DefaultTypography>Shuffle</DefaultTypography>
       </DefaultButton>

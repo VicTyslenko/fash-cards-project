@@ -1,8 +1,9 @@
 import { useSearchParams } from "react-router";
 import { useStoreDispatch } from "../../../../../../hooks";
 import { setQuestion } from "../../../../../../slices/cards/cardsSlice";
-import { ALL_CATEGORY } from "./utils";
+import { ALL_CATEGORY, shuffleCards } from "./utils";
 import { useMemo } from "react";
+
 import type { UseFilterArgs } from "./models";
 
 export const useFilter = ({ data }: UseFilterArgs) => {
@@ -40,5 +41,7 @@ export const useFilter = ({ data }: UseFilterArgs) => {
     });
   };
 
-  return { categories, handleSetCategory, currentCategory, handleSetQuestion, handleHideMastered, masteredHidden };
+  const handleShuffleCards = () => shuffleCards({ arr: data });
+
+  return { categories, handleSetCategory, currentCategory, handleSetQuestion, handleHideMastered, masteredHidden, handleShuffleCards };
 };

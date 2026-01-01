@@ -18,23 +18,16 @@ export const InfoWrapp = styled.div`
   flex-direction: column;
   gap: 12px;
 
-  & .title {
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 120%;
-  }
   & .number {
     font-size: 40px;
-    font-style: normal;
     font-weight: 700;
     line-height: 120%;
   }
 `;
-export const IconWrapp = styled.div`
+export const IconWrapp = styled.div<{ color: string }>`
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #92adeb;
+  background-color: ${({ color }) => color};
 `;

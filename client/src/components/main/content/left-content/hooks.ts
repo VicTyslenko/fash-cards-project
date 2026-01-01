@@ -1,14 +1,13 @@
 import { useSearchParams } from "react-router";
 import { ALL_CATEGORY } from "./extensions/filter/utils";
-import { useGetCardsQuery } from "../../../../api/apiSlice";
+import type { DataProps } from "../models";
 
-export const useLeftContent = () => {
+export const useLeftContent = ({ data: cardsData }: DataProps) => {
   const [searchParams] = useSearchParams();
   const currentIndex: number = Number(searchParams.get("card")) || 1;
   const isMastered: boolean = searchParams.get("mastered") === "true";
 
   const categoryInfo = searchParams.get("category") ?? ALL_CATEGORY;
-  const { data: cardsData } = useGetCardsQuery();
 
   const filteredData =
     cardsData?.filter((el) => (categoryInfo === ALL_CATEGORY || el.category === categoryInfo) && (!isMastered || el.known_count !== 5)) || [];
