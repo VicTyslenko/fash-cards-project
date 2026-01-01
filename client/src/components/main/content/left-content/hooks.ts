@@ -5,15 +5,17 @@ import { useGetCardsQuery } from "../../../../api/apiSlice";
 export const useLeftContent = () => {
   const [searchParams] = useSearchParams();
   const currentIndex: number = Number(searchParams.get("card")) || 1;
+  const isMastered: boolean = searchParams.get("mastered") === "true";
 
   const categoryInfo = searchParams.get("category") ?? ALL_CATEGORY;
-  const { data } = useGetCardsQuery();
+  const { data: cardsData } = useGetCardsQuery();
 
-  const filteredData = data?.filter((el) => categoryInfo === ALL_CATEGORY || el.category === categoryInfo) || [];
+  const filteredData =
+    cardsData?.filter((el) => (categoryInfo === ALL_CATEGORY || el.category === categoryInfo) && (!isMastered || el.known_count !== 5)) || [];
 
   const currentCard = filteredData?.[currentIndex - 1];
 
   const totalFilteredCards = filteredData.length;
 
-  return { filteredData, categoryInfo, currentCard, totalFilteredCards };
+  return { filteredData, categoryInfo, currentCard, totalFilteredCards, cardsData };
 };

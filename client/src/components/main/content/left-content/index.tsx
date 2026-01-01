@@ -6,11 +6,11 @@ import { useLeftContent } from "./hooks";
 import * as S from "./styles";
 
 export const LeftContent = () => {
-  const { categoryInfo, currentCard, totalFilteredCards } = useLeftContent();
+  const { categoryInfo, currentCard, totalFilteredCards, cardsData } = useLeftContent();
 
   return (
     <S.Wrapper>
-      <Filter />
+      <Filter data={cardsData} />
       <QuestionsContent categoryInfo={categoryInfo} currentCard={currentCard} totalCards={totalFilteredCards} />
       <PaginationSection total={totalFilteredCards} />
     </S.Wrapper>

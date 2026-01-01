@@ -1,16 +1,17 @@
-import { useGetCardsQuery } from "../../../../../../api/apiSlice";
 import { useSearchParams } from "react-router";
 import { useStoreDispatch } from "../../../../../../hooks";
 import { setQuestion } from "../../../../../../slices/cards/cardsSlice";
 import { ALL_CATEGORY } from "./utils";
+import { useMemo } from "react";
+import type { UseFilterArgs } from "./models";
 
-export const useFilter = () => {
+export const useFilter = ({ data }: UseFilterArgs) => {
   const dispatch = useStoreDispatch();
-  const { data: cardsData } = useGetCardsQuery();
-
   const handleSetQuestion = () => dispatch(setQuestion());
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const masteredHidden = searchParams.get("mastered") === "true";
 
   const handleSetCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchParams((searchParams) => {
@@ -24,7 +25,20 @@ export const useFilter = () => {
 
   const currentCategory = searchParams.get("category") || "All Categories";
 
-  const categories = [ALL_CATEGORY, ...new Set(cardsData?.map((c) => c.category) ?? [])];
+  const categories = useMemo(() => {
+    return [ALL_CATEGORY, ...new Set(data?.map((c) => c.category) ?? [])];
+  }, [data]);
 
-  return { categories, handleSetCategory, currentCategory, handleSetQuestion };
+  const handleHideMastered = () => {
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+
+      const isHidden = next.get("mastered") === "true";
+      next.set("mastered", String(!isHidden));
+
+      return next;
+    });
+  };
+
+  return { categories, handleSetCategory, currentCategory, handleSetQuestion, handleHideMastered, masteredHidden };
 };

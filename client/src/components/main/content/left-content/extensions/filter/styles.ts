@@ -54,6 +54,11 @@ export const CheckBoxWrapp = styled.div`
   & input {
     width: 16px;
     height: 16px;
+    cursor: pointer;
+
+    /* background-color: #f8cb46;
+    border: 1px solid #2e1401;
+    border-radius: 4px; */
   }
   & label {
     color: #2e1401;

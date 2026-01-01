@@ -1,14 +1,15 @@
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { DefaultTypography } from "../../../../../../shared/default-typography";
-
+import type { FilterProps } from "./models";
 import ArrowDown from "@/assets/icons/icon-chevron-down.svg";
 import ShuffleIcon from "@/assets/icons/icon-shuffle.svg";
 import { useFilter } from "./hooks";
 
 import * as S from "./styles";
 
-export const Filter = () => {
-  const { categories, handleSetCategory, currentCategory, handleSetQuestion } = useFilter();
+export const Filter = ({ data }: FilterProps) => {
+  const { categories, handleSetCategory, currentCategory, handleSetQuestion, handleHideMastered, masteredHidden } = useFilter({ data });
+
   return (
     <S.Wrapper>
       <S.FlexWrapp>
@@ -29,8 +30,8 @@ export const Filter = () => {
           <img src={ArrowDown} alt="" className="arrow" />
         </S.DropDown>
         <S.CheckBoxWrapp>
-          <input type="checkbox" id="test" />
-          <label htmlFor="test">Hide Mastered</label>
+          <input type="checkbox" id="hide-input" onChange={handleHideMastered} checked={masteredHidden} />
+          <label htmlFor="hide-input">Hide Mastered</label>
         </S.CheckBoxWrapp>
       </S.FlexWrapp>
 
