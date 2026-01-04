@@ -21,18 +21,10 @@ export const FlexWrapp = styled.div`
   gap: 16px;
 `;
 
-export const DropDown = styled.div`
+export const DropDownWrapp = styled.div`
+  width: 137px;
+  height: 20px;
   position: relative;
-
-  & .arrow {
-    position: absolute;
-    top: 15px;
-    right: 16px;
-    cursor: pointer;
-  }
-`;
-export const Select = styled.select`
-  max-width: 140px;
   appearance: none;
   padding: 12px 44px 12px 16px;
   border-radius: 999px;
@@ -44,7 +36,15 @@ export const Select = styled.select`
   font-weight: 500;
   line-height: 120%;
   cursor: pointer;
+
+  & .arrow {
+    position: absolute;
+    top: 15px;
+    right: 16px;
+    cursor: pointer;
+  }
 `;
+export const Select = styled.select``;
 
 export const CheckBoxWrapp = styled.div`
   display: flex;
@@ -55,10 +55,6 @@ export const CheckBoxWrapp = styled.div`
     width: 16px;
     height: 16px;
     cursor: pointer;
-
-    /* background-color: #f8cb46;
-    border: 1px solid #2e1401;
-    border-radius: 4px; */
   }
   & label {
     color: #2e1401;
