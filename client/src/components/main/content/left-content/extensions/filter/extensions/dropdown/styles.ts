@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  position: relative;
+`;
+
+export const ItemsListInner = styled.div`
   position: absolute;
   z-index: 999;
   top: 55px;
@@ -18,6 +22,30 @@ export const Wrapper = styled.div`
 
   &:last-child {
     border-bottom: none;
+  }
+`;
+export const DropDownAction = styled.div`
+  position: relative;
+  width: 137px;
+  height: 20px;
+  position: relative;
+  appearance: none;
+  padding: 12px 44px 12px 16px;
+  border-radius: 999px;
+  border: 1px solid #2e1401;
+  background-color: #fff;
+  color: #2e1401;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  cursor: pointer;
+
+  & .arrow {
+    position: absolute;
+    top: 15px;
+    right: 16px;
+    cursor: pointer;
   }
 `;
 

@@ -2,15 +2,12 @@ import { useSearchParams } from "react-router";
 import { useStoreDispatch } from "../../../../../../hooks";
 import { setQuestion } from "../../../../../../slices/cards/cardsSlice";
 import { shuffleCards } from "./utils";
-import { useState } from "react";
 import { getCategoriesQuantity } from "./utils";
 import type { UseFilterArgs } from "./models";
 
 export const useFilter = ({ data }: UseFilterArgs) => {
   const dispatch = useStoreDispatch();
   const handleSetQuestion = () => dispatch(setQuestion());
-  const [openList, setOpenList] = useState(false);
-
 
   const [searchParams, setSearchParams] = useSearchParams();
   const masteredHidden = searchParams.get("mastered") === "true";
@@ -38,8 +35,7 @@ export const useFilter = ({ data }: UseFilterArgs) => {
     handleHideMastered,
     masteredHidden,
     handleShuffleCards,
-    setOpenList,
-    openList,
+
     categories,
   };
 };
