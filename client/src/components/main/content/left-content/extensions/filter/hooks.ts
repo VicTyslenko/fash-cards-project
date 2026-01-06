@@ -12,8 +12,6 @@ export const useFilter = ({ data }: UseFilterArgs) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const masteredHidden = searchParams.get("mastered") === "true";
 
-  const currentCategory = searchParams.get("category");
-
   const handleHideMastered = () => {
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
@@ -29,8 +27,6 @@ export const useFilter = ({ data }: UseFilterArgs) => {
 
   const categories = getCategoriesQuantity({ data });
   return {
-    // handleSetCategory,
-    currentCategory,
     handleSetQuestion,
     handleHideMastered,
     masteredHidden,

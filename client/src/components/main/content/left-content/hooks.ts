@@ -1,20 +1,45 @@
 import { useSearchParams } from "react-router";
-import { ALL_CATEGORY } from "./extensions/filter/utils";
+import { useStoreSelector } from "../../../../hooks";
+import { useEffect } from "react";
 import type { DataProps } from "../models";
 
 export const useLeftContent = ({ data: cardsData }: DataProps) => {
-  const [searchParams] = useSearchParams();
-  const currentIndex: number = Number(searchParams.get("card")) || 1;
+  // Getting array of chosen categories from Redux store
+  const filteredCategories = useStoreSelector((state) => state.cards.selectedCategories);
+
+  const [searchParams, setSearchParams] = useSearchParams();
   const isMastered: boolean = searchParams.get("mastered") === "true";
 
-  const categoryInfo = searchParams.get("category") ?? ALL_CATEGORY;
+  // Filter data by filtered categories from filter dropdown and hide/show mastered cards
+  const filteredData = cardsData.filter((el) => {
+    const categoryMatch = filteredCategories.length === 0 || filteredCategories.includes(el.category);
 
-  const filteredData =
-    cardsData?.filter((el) => (categoryInfo === ALL_CATEGORY || el.category === categoryInfo) && (!isMastered || el.known_count !== 5)) || [];
+    const masteredMatch = !isMastered || el.known_count !== 5;
 
-  const currentCard = filteredData?.[currentIndex - 1];
+    return categoryMatch && masteredMatch;
+  });
 
+  const cardId = searchParams.get("cardId");
+  const currentCard = filteredData.find((card) => card.id === cardId);
+  const currentIndex = currentCard ? filteredData.findIndex((el) => el.id === currentCard.id) + 1 : 1;
+
+  // Get total cards number
   const totalFilteredCards = filteredData.length;
 
-  return { filteredData, categoryInfo, currentCard, totalFilteredCards, cardsData };
+  // Set card id to url param
+  useEffect(() => {
+    if (!filteredData.length) return;
+
+    if (!currentCard) {
+      setSearchParams(
+        (searchParams) => {
+          searchParams.set("cardId", filteredData[0].id);
+          return searchParams;
+        },
+        { replace: true }
+      );
+    }
+  }, [filteredData, currentCard, setSearchParams]);
+
+  return { filteredData, currentCard, totalFilteredCards, currentIndex };
 };

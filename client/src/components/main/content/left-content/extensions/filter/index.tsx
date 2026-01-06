@@ -8,21 +8,11 @@ import { useFilter } from "./hooks";
 import * as S from "./styles";
 
 export const Filter = ({ data }: FilterProps) => {
-  const {
-    // handleSetCategory,
-    currentCategory,
-    handleSetQuestion,
-    handleHideMastered,
-    masteredHidden,
-    handleShuffleCards,
-    categories,
-  } = useFilter({
+  const { handleHideMastered, masteredHidden, handleShuffleCards, categories } = useFilter({
     data,
   });
-
   return (
     <S.Wrapper>
-      {/* <form action="" onSubmit={() => {}}> */}
       <S.FlexWrapp>
         <DropDown data={categories} />
 
@@ -31,7 +21,6 @@ export const Filter = ({ data }: FilterProps) => {
           <label htmlFor="hide-input">Hide Mastered</label>
         </S.CheckBoxWrapp>
       </S.FlexWrapp>
-      {/* </form> */}
 
       <DefaultButton>
         <img src={ShuffleIcon} alt="shuffle" />

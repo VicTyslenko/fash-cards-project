@@ -7,13 +7,12 @@ import type { DataProps } from "../models";
 import * as S from "./styles";
 
 export const LeftContent = ({ data }: DataProps) => {
-  const { categoryInfo, currentCard, totalFilteredCards } = useLeftContent({ data });
-
+  const { currentCard, totalFilteredCards, currentIndex, filteredData } = useLeftContent({ data });
   return (
     <S.Wrapper>
       <Filter data={data} />
-      <QuestionsContent categoryInfo={categoryInfo} currentCard={currentCard} totalCards={totalFilteredCards} />
-      <PaginationSection total={totalFilteredCards} />
+      <QuestionsContent currentCard={currentCard} data={filteredData} />
+      <PaginationSection total={totalFilteredCards} currentIndex={currentIndex} currentCard={currentCard} data={filteredData} />
     </S.Wrapper>
   );
 };

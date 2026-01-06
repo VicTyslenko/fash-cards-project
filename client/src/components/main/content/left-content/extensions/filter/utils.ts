@@ -1,7 +1,5 @@
 import type { Card } from "../../../../../../slices/cards/models";
 
-export const ALL_CATEGORY = "All Categories";
-
 export const shuffleCards = ({ arr }: { arr: Card[] }) => {
   let i = arr.length,
     j,

@@ -6,7 +6,6 @@ import * as S from "./styles";
 
 export const Content = () => {
   const { data } = useContent();
-
   return (
     <S.Wrapper>
       <LeftContent data={data} />

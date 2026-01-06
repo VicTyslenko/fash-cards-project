@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { initialState } from "./models";
 
 export const cardsSlice = createSlice({
@@ -12,9 +12,16 @@ export const cardsSlice = createSlice({
     setQuestion: (state) => {
       state.isQuestion = true;
     },
+    selectCards: (state, action: PayloadAction<string>): void => {
+      const category = action.payload;
+
+      state.selectedCategories = state.selectedCategories.includes(category)
+        ? state.selectedCategories.filter((c) => c !== category)
+        : [...state.selectedCategories, category];
+    },
   },
 });
 
-export const { toggleCard, setQuestion } = cardsSlice.actions;
+export const { toggleCard, setQuestion, selectCards } = cardsSlice.actions;
 
 export default cardsSlice.reducer;

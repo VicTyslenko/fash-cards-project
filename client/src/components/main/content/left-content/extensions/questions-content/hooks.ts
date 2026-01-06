@@ -7,14 +7,13 @@ import { toggleCard } from "../../../../../../slices/cards/cardsSlice";
 import { MAX_KNOWN } from "./utils";
 
 type Props = {
-  currentCard: Card;
-  totalCards: number;
+  currentCard?: Card;
+  data?: Card[];
 };
 
-export const useQuestionsContent = ({ currentCard, totalCards }: Props) => {
+export const useQuestionsContent = ({ currentCard, data }: Props) => {
   const dispatch = useStoreDispatch();
   const [_, setSearchParams] = useSearchParams();
-
   const isQuestion = useStoreSelector((state) => state.cards.isQuestion);
 
   // toggle card question to answer
@@ -25,14 +24,14 @@ export const useQuestionsContent = ({ currentCard, totalCards }: Props) => {
 
   // update card progress count function
   const handleCardUpdate = async () => {
+    if (!currentCard) return;
     try {
-      await updateCard({ id: currentCard.id }).unwrap();
+      await updateCard({ id: currentCard?.id }).unwrap();
 
       setSearchParams((prev) => {
         const currentIndex = Number(prev.get("card")) || 1;
 
-        if (currentIndex >= totalCards) {
-          prev.set("category", "All Categories");
+        if (data && currentIndex >= data.length) {
           prev.set("card", "1");
         } else {
           prev.set("card", String(currentIndex + 1));
@@ -47,6 +46,7 @@ export const useQuestionsContent = ({ currentCard, totalCards }: Props) => {
 
   // reset card progress function
   const handleResetCard = async () => {
+    if (!currentCard) return;
     try {
       await resetCard({ id: currentCard.id }).unwrap();
     } catch (error) {

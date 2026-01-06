@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
 
 type StyledButtonProps = {
   $isQuestion?: boolean;
+  $allMastered?: boolean;
 };
 
 export const StyledButton = styled(DefaultButton)<StyledButtonProps>`
@@ -25,7 +26,7 @@ export const StyledButton = styled(DefaultButton)<StyledButtonProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${({ $allMastered }) => ($allMastered ? "center" : "space-between")};
 
   & .blue-star {
     position: absolute;
@@ -126,7 +127,6 @@ export const ProgressBar = styled.progress`
   }
 
   &::-webkit-progress-value {
-   
     background-color: #11b311;
   }
 `;
