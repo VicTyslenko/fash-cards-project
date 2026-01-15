@@ -1,14 +1,33 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { apiSlice } from "./api/apiSlice";
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import cardsReducer from "./slices/cards/cardsSlice";
 
-export const store = configureStore({
-  reducer: {
-    cards: cardsReducer,
-    [apiSlice.reducerPath]: apiSlice.reducer,
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+const persistConfig = {
+  key: "root",
+  storage,
+  blacklist: [apiSlice.reducerPath],
+};
+
+const rootReducer = combineReducers({
+  cards: cardsReducer,
+  [apiSlice.reducerPath]: apiSlice.reducer,
 });
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(apiSlice.middleware),
+});
+
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
