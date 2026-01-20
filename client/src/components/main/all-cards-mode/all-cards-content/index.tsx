@@ -1,3 +1,9 @@
+import { NewCardForm } from "../new-card-form";
+
 export const AllCardsContent = () => {
-  return <div>All cards content</div>;
+  return (
+    <div>
+      <NewCardForm />
+    </div>
+  );
 };
