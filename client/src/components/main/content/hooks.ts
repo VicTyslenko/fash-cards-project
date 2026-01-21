@@ -1,7 +1,7 @@
 import { useGetCardsQuery } from "../../../api/apiSlice";
 
-export const useContent = () => {
-  const { data = [] } = useGetCardsQuery();
+export const useGetData = () => {
+  const { data = [], isLoading } = useGetCardsQuery();
 
-  return { data };
+  return { data, isLoading };
 };

@@ -44,7 +44,6 @@ export const DropDownWrapp = styled.div`
     cursor: pointer;
   }
 `;
-export const Select = styled.select``;
 
 export const CheckBoxWrapp = styled.div`
   display: flex;
@@ -56,11 +55,12 @@ export const CheckBoxWrapp = styled.div`
     height: 16px;
     cursor: pointer;
   }
-  & label {
-    color: #2e1401;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 120%;
-  }
+`;
+
+export const Label = styled.label`
+  color: #2e1401;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
 `;

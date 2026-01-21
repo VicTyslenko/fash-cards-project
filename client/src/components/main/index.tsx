@@ -1,7 +1,7 @@
 import { Header } from "../header";
 import { Content } from "./content";
 import { ModeParams } from "./models";
-import { AllCardsContent } from "./all-cards-mode/all-cards-content";
+import { AllCardsMode } from "./all-cards-mode";
 import { useDefaultParameters } from "./hooks";
 
 import * as S from "./styles";
@@ -12,7 +12,7 @@ export const Main = () => {
   return (
     <S.Wrapper>
       <Header />
-      {mode === ModeParams.Study ? <Content /> : <AllCardsContent />}
+      {mode === ModeParams.Study ? <Content /> : <AllCardsMode />}
     </S.Wrapper>
   );
 };

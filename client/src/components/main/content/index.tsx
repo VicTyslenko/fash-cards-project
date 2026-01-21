@@ -1,11 +1,11 @@
 import { LeftContent } from "./left-content";
 import { RightContent } from "./right-content";
-import { useContent } from "./hooks";
+import { useGetData } from "./hooks";
 
 import * as S from "./styles";
 
 export const Content = () => {
-  const { data } = useContent();
+  const { data } = useGetData();
   return (
     <S.Wrapper>
       <LeftContent data={data} />

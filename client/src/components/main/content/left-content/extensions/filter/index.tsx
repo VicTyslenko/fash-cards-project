@@ -1,24 +1,25 @@
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { DefaultTypography } from "../../../../../../shared/default-typography";
 import { DropDown } from "./extensions/dropdown";
+import { CheckBoxInput } from "../../../../../../shared/check-box-input";
 import type { FilterProps } from "./models";
 
 import ShuffleIcon from "@/assets/icons/icon-shuffle.svg";
 import { useFilter } from "./hooks";
 import * as S from "./styles";
 
-export const Filter = ({ data }: FilterProps) => {
+export const Filter = ({ data, className }: FilterProps) => {
   const { handleHideMastered, masteredHidden, handleShuffleCards, categories } = useFilter({
     data,
   });
   return (
-    <S.Wrapper>
+    <S.Wrapper className={className}>
       <S.FlexWrapp>
         <DropDown data={categories} />
 
         <S.CheckBoxWrapp>
-          <input type="checkbox" id="hide-input" onChange={handleHideMastered} checked={masteredHidden} />
-          <label htmlFor="hide-input">Hide Mastered</label>
+          <CheckBoxInput checked={masteredHidden} onChange={handleHideMastered} id="hide-input" />
+          <S.Label htmlFor="hide-input">Hide Mastered</S.Label>
         </S.CheckBoxWrapp>
       </S.FlexWrapp>
 

@@ -63,7 +63,6 @@ export const StyledButton = styled(DefaultButton)<StyledButtonProps>`
 `;
 
 export const CategoryInfo = styled.div`
-  min-width: 107px;
   border-radius: 999px;
   border: 1px solid #2e1401;
   padding: 6px 12px;
