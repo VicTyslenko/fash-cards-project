@@ -29,8 +29,7 @@ export const AnswerSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
-  border-bottom: 1px solid var(--colors-neutral-900, #2e1401);
-  
+
   & .answer-header {
     color: var(--colors-neutral-900, #2e1401);
     font-size: 14px;
@@ -47,4 +46,23 @@ export const AnswerSection = styled.div`
 
 export const BottomSection = styled.div`
   display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--colors-neutral-900, #2e1401);
+`;
+
+export const InfoSection = styled.div`
+  padding: 14px 10px 16px;
+  border-right: 1px solid var(--colors-neutral-900, #2e1401);
+`;
+
+export const MasterSection = styled.div<{ $isMastered?: boolean }>`
+  flex: 2;
+  padding: ${({ $isMastered }) => ($isMastered ? "14px 0 14px 8px" : "24px 0 24px 8px")};
+`;
+export const MenuButton = styled.button`
+  background: var(--colors-neutral-0, #fff);
+  cursor: pointer;
+  border-radius: 0 0 16px 0;
+  border: none;
+  border-left: 1px solid var(--colors-neutral-900, #2e1401);
 `;

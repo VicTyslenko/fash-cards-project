@@ -12,7 +12,7 @@ export const Main = () => {
   return (
     <S.Wrapper>
       <Header />
-      {mode === ModeParams.Study ? <Content /> : <AllCardsMode />}
+      {mode === ModeParams.STUDY ? <Content /> : <AllCardsMode />}
     </S.Wrapper>
   );
 };

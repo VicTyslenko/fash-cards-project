@@ -1,8 +1,18 @@
 import { pool } from "../db/pool.js";
 
 export const getCards = async (req, res) => {
+  const limit = Number(req.query.limit) || 12;
+  const offset = Number(req.query.offset) || 0;
+
   try {
-    const { rows } = await pool.query("SELECT * FROM flashcards ORDER BY id ASC");
+    const { rows } = await pool.query(
+      `SELECT * FROM flashcards
+      ORDER BY id ASC
+       LIMIT $1 
+       OFFSET $2`,
+      [limit, offset],
+    );
+
     res.json(rows);
   } catch (error) {
     console.error(error);
@@ -22,7 +32,7 @@ export const updateCard = async (req, res) => {
        WHERE id = $1
        RETURNING *
       `,
-      [cardId, MAX_KNOWN]
+      [cardId, MAX_KNOWN],
     );
     if (rows.length === 0) {
       return res.status(404).json({ message: "Card not found" });
@@ -45,7 +55,7 @@ export const resetCard = async (req, res) => {
     WHERE id = $1
     RETURNING *
     `,
-      [cardId]
+      [cardId],
     );
 
     if (rows.length === 0) {

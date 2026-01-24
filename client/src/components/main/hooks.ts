@@ -8,7 +8,7 @@ export const useDefaultParameters = () => {
 
   useEffect(() => {
     setSearchParams((sp) => {
-      if (!sp.get("mode")) sp.set("mode", ModeParams.Study);
+      if (!sp.get("mode")) sp.set("mode", ModeParams.STUDY);
       return sp;
     });
   }, [setSearchParams]);

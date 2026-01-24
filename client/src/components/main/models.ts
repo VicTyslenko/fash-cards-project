@@ -1,4 +1,4 @@
 export enum ModeParams {
-  Study = "study",
-  AllCards = "all-cards",
+  STUDY = "study",
+  All = "allCards",
 }

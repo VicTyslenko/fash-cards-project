@@ -2,13 +2,13 @@ import type { QuestionProps } from "../models";
 import { DefaultTypography } from "../../../../../../shared/default-typography";
 import YellowStar from "@/assets/icons/pattern-star-yellow.svg";
 import BlueStar from "@/assets/icons/pattern-star-blue.svg";
-import IconMastered from "@/assets/icons/icon-mastered.svg";
 import PinkStar from "@/assets/icons/pattern-star-pink.svg";
 import { EmptyCard } from "../empty-card";
+import { ProgressBar } from "../../../../../../shared/components/progress-bar";
 import IconCheck from "@/assets/icons/icon-circle-check.svg";
 import IconReset from "@/assets/icons/icon-reset.svg";
+import { MasteredInfo } from "../../../../../../shared/mastered-info";
 import { DefaultButton } from "../../../../../../shared/default-button";
-import { MAX_KNOWN } from "./utils";
 import { useQuestionsContent } from "./hooks";
 
 import * as S from "./styles";
@@ -18,7 +18,6 @@ export const QuestionsContent = ({ currentCard, data }: QuestionProps) => {
     currentCard,
     data,
   });
-
   return (
     <S.Wrapper>
       <S.StyledButton $allMastered={!data.length} onClick={handleToggleCard} $isQuestion={isQuestion}>
@@ -41,18 +40,7 @@ export const QuestionsContent = ({ currentCard, data }: QuestionProps) => {
                 </DefaultTypography>
               </S.MiddleBlock>
             )}
-            {!isMastered ? (
-              <S.BarWrapp>
-                <S.ProgressBar value={progressCount} max={MAX_KNOWN} />
-                <DefaultTypography className="score">{`${progressCount}/${MAX_KNOWN}`}</DefaultTypography>
-              </S.BarWrapp>
-            ) : (
-              <S.CategoryInfo className="mastered">
-                <img src={IconMastered} alt="icon mastered" />
-                <DefaultTypography>Mastered</DefaultTypography>
-                <DefaultTypography>5/5</DefaultTypography>
-              </S.CategoryInfo>
-            )}
+            {!isMastered ? <ProgressBar progressValue={progressCount} /> : <MasteredInfo />}
 
             {isQuestion ? <img src={BlueStar} alt="blue star" className="blue-star" /> : <img src={PinkStar} alt="pink star" className="blue-star" />}
 
