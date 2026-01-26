@@ -1,7 +1,7 @@
+import { MAX_KNOWN } from "../../../../shared/utils";
 import type { DataProps } from "../models";
 import type { CardQuantityKey } from "./extensions/models";
 
-import { MAX_KNOWN } from "../left-content/extensions/questions-content/utils";
 
 export const useRightContent = ({ data }: DataProps) => {
   const totalCards = data.length || 0;

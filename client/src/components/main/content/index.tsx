@@ -1,15 +1,15 @@
 import { LeftContent } from "./left-content";
 import { RightContent } from "./right-content";
-import { useGetData } from "./hooks";
+import type { Card } from "../../../slices/cards/models";
+import type { GetCardsResponse } from "../../../api/models";
 
 import * as S from "./styles";
 
-export const Content = () => {
-  const { data } = useGetData();
+export const Content = ({ filteredData, data }: { filteredData: Card[]; data: Card[] }) => {
   return (
     <S.Wrapper>
-      <LeftContent data={data} />
-      <RightContent data={data} />
+      <LeftContent data={data} filteredData={filteredData} />
+      <RightContent data={data} filteredData={filteredData} />
     </S.Wrapper>
   );
 };

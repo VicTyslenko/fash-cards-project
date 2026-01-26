@@ -4,7 +4,7 @@ import { useStoreSelector, useStoreDispatch } from "../../../../../../hooks";
 import { useSearchParams } from "react-router";
 import { setQuestion } from "../../../../../../slices/cards/cardsSlice";
 import { toggleCard } from "../../../../../../slices/cards/cardsSlice";
-import { MAX_KNOWN } from "./utils";
+import { MAX_KNOWN } from "../../../../../../shared/utils";
 
 type Props = {
   currentCard?: Card;

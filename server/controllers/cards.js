@@ -2,18 +2,19 @@ import { pool } from "../db/pool.js";
 
 export const getCards = async (req, res) => {
   const limit = Number(req.query.limit) || 12;
-  const offset = Number(req.query.offset) || 0;
 
   try {
     const { rows } = await pool.query(
       `SELECT * FROM flashcards
-      ORDER BY id ASC
-       LIMIT $1 
-       OFFSET $2`,
-      [limit, offset],
+       ORDER BY id ASC
+       LIMIT $1`,
+      [limit + 1],
     );
 
-    res.json(rows);
+    const hasMore = rows.length > limit;
+
+    const cards = hasMore ? rows.slice(0, limit) : rows;
+    res.json({ cards, hasMore });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch cards" });

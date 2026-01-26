@@ -1,5 +1,5 @@
-import { MAX_KNOWN } from "../../../components/main/content/left-content/extensions/questions-content/utils";
 import { DefaultTypography } from "../../default-typography";
+import { MAX_KNOWN } from "../../utils";
 import * as S from "./styles";
 
 export const ProgressBar = ({ progressValue }: { progressValue: number }) => {

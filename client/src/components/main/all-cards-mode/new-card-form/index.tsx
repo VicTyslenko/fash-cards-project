@@ -5,7 +5,7 @@ import { DefaultTypography } from "../../../../shared/default-typography";
 import PlusIcon from "@/assets/icons/icon-circle-plus.svg";
 export const NewCardForm = () => {
   return (
-    <S.Form>
+    <S.Form className="new-card_form">
       <S.InputWrapp>
         <S.Label>Question</S.Label>
         <S.Input placeholder="e.g., What is the capital of France?" />

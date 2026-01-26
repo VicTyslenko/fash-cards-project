@@ -1,3 +1,5 @@
+import { INITIAL_CARDS_QTY } from "../../shared/utils";
+
 export type Card = {
   id: string;
   question: string;
@@ -11,6 +13,7 @@ export type CardProps = {
   isQuestion: boolean;
   selectedCategories: string[];
   isSelected: boolean;
+  cardsLimit: number;
 };
 
 export const initialState: CardProps = {
@@ -18,4 +21,5 @@ export const initialState: CardProps = {
   isQuestion: true,
   selectedCategories: [],
   isSelected: false,
+  cardsLimit: INITIAL_CARDS_QTY,
 };

@@ -45,7 +45,7 @@
 
 html,
 body {
-  height: 100%;
+  overflow: auto;
   margin: 0;
 
   background-color: var(--bg-color);
@@ -55,7 +55,8 @@ p,
 h1,
 h2,
 h3,
-div, button {
+div,
+button {
   margin: 0;
   padding: 0;
 }

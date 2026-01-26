@@ -3,6 +3,4 @@ export type DefaultCardProps = {
   answer: string;
   category: string;
   known_count: number;
-  isMasteredHidden: boolean
 };
-

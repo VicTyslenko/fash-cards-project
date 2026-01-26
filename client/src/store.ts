@@ -4,18 +4,18 @@ import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, 
 import storage from "redux-persist/lib/storage";
 import cardsReducer from "./slices/cards/cardsSlice";
 
-const persistConfig = {
-  key: "root",
+const cardsPersistConfig = {
+  key: "cards",
   storage,
-  blacklist: [apiSlice.reducerPath],
+  blacklist: ["cardsLimit"],
 };
 
 const rootReducer = combineReducers({
-  cards: cardsReducer,
+  cards: persistReducer(cardsPersistConfig, cardsReducer),
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(cardsPersistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,

@@ -1,4 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+
 import { initialState } from "./models";
 
 export const cardsSlice = createSlice({
@@ -12,6 +13,10 @@ export const cardsSlice = createSlice({
     setQuestion: (state) => {
       state.isQuestion = true;
     },
+    loadMoreCards: (state) => {
+      state.cardsLimit += 12;
+    },
+
     selectCards: (state, action: PayloadAction<string>): void => {
       const category = action.payload;
 
@@ -22,6 +27,6 @@ export const cardsSlice = createSlice({
   },
 });
 
-export const { toggleCard, setQuestion, selectCards } = cardsSlice.actions;
+export const { toggleCard, setQuestion, selectCards, loadMoreCards } = cardsSlice.actions;
 
 export default cardsSlice.reducer;

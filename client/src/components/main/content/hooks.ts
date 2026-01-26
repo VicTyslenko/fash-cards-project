@@ -1,9 +1,6 @@
-import { useGetCardsQuery } from "../../../api/apiSlice";
+// export const useGetData = () => {
+//   const limit = useStoreSelector((state) => state.cards.cardsLimit);
+//   const { data, isLoading } = useGetCardsQuery({ limit });
 
-export const useGetData = () => {
-  const limit = 6;
-  const offset = 0;
-  const { data = [], isLoading } = useGetCardsQuery({ limit, offset});
-
-  return { data, isLoading };
-};
+//   return { data: data?.items ?? [], hasMore: data?.hasMore ?? false, isLoading };
+// };

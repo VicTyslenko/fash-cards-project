@@ -6,8 +6,9 @@ import type { DataProps } from "../models";
 
 import * as S from "./styles";
 
-export const LeftContent = ({ data }: DataProps) => {
-  const { currentCard, totalFilteredCards, currentIndex, filteredData } = useLeftContent({ data });
+export const LeftContent = ({ data, filteredData }: DataProps) => {
+  const { currentCard, totalFilteredCards, currentIndex } = useLeftContent({ data });
+
   return (
     <S.Wrapper>
       <Filter data={data} />
