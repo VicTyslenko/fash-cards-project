@@ -1,15 +1,16 @@
 import { LeftContent } from "./left-content";
 import { RightContent } from "./right-content";
-import type { Card } from "../../../slices/cards/models";
-import type { GetCardsResponse } from "../../../api/models";
+import { useGetFilteredData } from "./hooks";
 
 import * as S from "./styles";
 
-export const Content = ({ filteredData, data }: { filteredData: Card[]; data: Card[] }) => {
+export const Content = () => {
+  const { filteredData, allCards } = useGetFilteredData();
+
   return (
     <S.Wrapper>
-      <LeftContent data={data} filteredData={filteredData} />
-      <RightContent data={data} filteredData={filteredData} />
+      <LeftContent data={allCards} filteredData={filteredData} />
+      <RightContent data={allCards} filteredData={filteredData} />
     </S.Wrapper>
   );
 };

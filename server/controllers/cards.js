@@ -1,6 +1,19 @@
 import { pool } from "../db/pool.js";
 
-export const getCards = async (req, res) => {
+export const getAllCards = async (req, res) => {
+  try {
+    const { rows } = await pool.query(
+      `SELECT * FROM flashcards
+       ORDER BY id ASC`,
+    );
+
+    res.json({ allCards: rows });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCardsLimited = async (req, res) => {
   const limit = Number(req.query.limit) || 12;
 
   try {
@@ -8,13 +21,13 @@ export const getCards = async (req, res) => {
       `SELECT * FROM flashcards
        ORDER BY id ASC
        LIMIT $1`,
-      [limit + 1],
+      [limit],
     );
 
     const hasMore = rows.length > limit;
 
-    const cards = hasMore ? rows.slice(0, limit) : rows;
-    res.json({ cards, hasMore });
+    const limitedCards = hasMore ? rows.slice(0, limit) : rows;
+    res.json({ limitedCards, hasMore });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch cards" });

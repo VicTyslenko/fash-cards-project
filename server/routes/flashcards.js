@@ -1,10 +1,12 @@
 import express from "express";
-import { getCards, updateCard, resetCard } from "../controllers/cards.js";
+import { getCardsLimited, getAllCards, updateCard, resetCard } from "../controllers/cards.js";
 
 const router = express.Router();
 
 // get all cards
-router.get("/cards", getCards);
+router.get("/cards/all", getAllCards);
+
+router.get("/cards/limited", getCardsLimited);
 
 // update card
 router.patch("/card/:id", updateCard);

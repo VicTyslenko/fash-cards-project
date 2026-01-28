@@ -3,7 +3,6 @@ import { DefaultCard } from "./extensions/default-card";
 import { loadMoreCards } from "../../../../slices/cards/cardsSlice";
 import { useStoreDispatch } from "../../../../hooks";
 import { DefaultButton } from "../../../../shared/default-button";
-import { useSearchParams } from "react-router";
 
 import * as S from "./styles";
 
@@ -14,7 +13,6 @@ type Props = {
 
 export const CardsContent = ({ data, hasMore }: Props) => {
   const dispatch = useStoreDispatch();
-  const [searchParams] = useSearchParams();
 
   const handleLoadMore = () => {
     if (!hasMore) return;

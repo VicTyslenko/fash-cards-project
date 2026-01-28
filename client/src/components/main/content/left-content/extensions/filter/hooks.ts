@@ -26,6 +26,7 @@ export const useFilter = ({ data }: UseFilterArgs) => {
   const handleShuffleCards = () => shuffleCards({ arr: data });
 
   const categories = getCategoriesQuantity({ data });
+  
   return {
     handleSetQuestion,
     handleHideMastered,

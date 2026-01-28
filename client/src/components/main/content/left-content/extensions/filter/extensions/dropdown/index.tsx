@@ -16,6 +16,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 export const DropDown = ({ data, ...props }: Props) => {
   const dispatch = useStoreDispatch();
   const wrapperRef = useRef<HTMLDivElement>(null);
+  
   const selectedCategories = useStoreSelector((state) => state.cards.selectedCategories);
   const [isMenuActive, setIsMenuActive] = useState(false);
 
