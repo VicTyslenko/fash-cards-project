@@ -22,10 +22,7 @@ export const CardsContent = ({ data, hasMore }: Props) => {
   return (
     <>
       <S.CardsContentWrapp>
-        {data &&
-          data.map((card) => (
-            <DefaultCard key={card.id} known_count={card.known_count} question={card.question} answer={card.answer} category={card.category} />
-          ))}
+        {data && data.map((card) => <DefaultCard key={card.id} card={card} />)}
         <S.ButtonWrapp>
           <DefaultButton onClick={handleLoadMore}>Load more</DefaultButton>
         </S.ButtonWrapp>

@@ -21,7 +21,7 @@ export const getCardsLimited = async (req, res) => {
       `SELECT * FROM flashcards
        ORDER BY id ASC
        LIMIT $1`,
-      [limit],
+      [limit + 1],
     );
 
     const hasMore = rows.length > limit;

@@ -7,7 +7,9 @@ import { MasteredInfo } from "../../../../../../shared/mastered-info";
 import * as S from "./styles";
 import { MAX_KNOWN } from "../../../../../../shared/utils";
 
-export const DefaultCard = ({ question, answer, category, known_count }: DefaultCardProps) => {
+export const DefaultCard = ({ card }: DefaultCardProps) => {
+  const { question, answer, category, known_count } = card;
+
   return (
     <S.CardWrapper>
       <S.HeaderSection>

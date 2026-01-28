@@ -7,11 +7,10 @@ import { useAllCardsMode } from "./hooks";
 
 export const AllCardsMode = () => {
   const { limitedData, hasMore, filteredData } = useAllCardsMode();
-  console.log(filteredData);
   return (
     <S.Wrapper>
       <NewCardForm />
-      <Filter data={limitedData} className="filter" />
+      <Filter data={limitedData} />
       <CardsContent data={filteredData} hasMore={hasMore} />
     </S.Wrapper>
   );

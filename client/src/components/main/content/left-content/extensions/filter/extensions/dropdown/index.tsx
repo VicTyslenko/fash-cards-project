@@ -2,8 +2,9 @@ import { CheckBoxInput } from "../../../../../../../../shared/check-box-input";
 import { DefaultTypography } from "../../../../../../../../shared/default-typography";
 import { useSearchParams } from "react-router";
 import { useRef, useState } from "react";
+import { ModeParams } from "../../../../../../models";
 import { useStoreDispatch, useStoreSelector } from "../../../../../../../../hooks";
-import { selectCards } from "../../../../../../../../slices/cards/cardsSlice";
+import { selectCategories } from "../../../../../../../../slices/cards/cardsSlice";
 import ArrowDown from "@/assets/icons/icon-chevron-down.svg";
 import { useClickOutside } from "../../../../../../../../shared/hooks";
 
@@ -16,21 +17,25 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 export const DropDown = ({ data, ...props }: Props) => {
   const dispatch = useStoreDispatch();
   const wrapperRef = useRef<HTMLDivElement>(null);
-  
+
   const selectedCategories = useStoreSelector((state) => state.cards.selectedCategories);
+  const selectedStudyCategories = useStoreSelector((state) => state.cards.selectedStudyCategories);
+
   const [isMenuActive, setIsMenuActive] = useState(false);
 
-  const [_, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
+
+  const mode = searchParams.get("mode") || ModeParams.All;
 
   const handleCloseMenu = () => setIsMenuActive(false);
   useClickOutside(wrapperRef, handleCloseMenu);
 
   const handleToggleMenu = () => setIsMenuActive((prev) => !prev);
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const { value: category } = event.target;
 
-    dispatch(selectCards(value));
+    dispatch(selectCategories({ category, mode }));
   };
 
   return (
@@ -44,7 +49,11 @@ export const DropDown = ({ data, ...props }: Props) => {
         <S.ItemsListInner>
           {data.map((obj) => (
             <S.DropDownItem key={obj.category}>
-              <CheckBoxInput value={obj.category} onChange={handleInputChange} checked={selectedCategories.includes(obj.category)} />
+              <CheckBoxInput
+                value={obj.category}
+                onChange={handleInputChange}
+                checked={mode === ModeParams.All ? selectedCategories.includes(obj.category) : selectedStudyCategories.includes(obj.category)}
+              />
               <DefaultTypography>
                 {obj.category} <span className="quantity">({obj.quantity})</span>
               </DefaultTypography>
