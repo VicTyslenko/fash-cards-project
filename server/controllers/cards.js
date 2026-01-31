@@ -1,5 +1,6 @@
 import { pool } from "../db/pool.js";
 import { randomUUID } from "crypto";
+import { checkEmptyFields } from "./utils.js";
 
 export const getAllCards = async (req, res) => {
   try {
@@ -63,6 +64,15 @@ export const updateCard = async (req, res) => {
 // Create a new card request
 export const createCard = async (req, res) => {
   const { question, answer, category } = req.body;
+
+  const emptyFields = checkEmptyFields(req.body);
+
+  if (emptyFields.length > 0) {
+    return res.status(400).json({
+      error: "All fields are required",
+      fields: emptyFields,
+    });
+  }
 
   try {
     const { rows } = await pool.query(
