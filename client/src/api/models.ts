@@ -8,3 +8,11 @@ export type GetCardsResponse = {
 export type GetCards = {
   allCards: Card[];
 };
+
+export type NewCardProps = {
+  values: {
+    question: string;
+    answer: string;
+    category: string;
+  };
+};

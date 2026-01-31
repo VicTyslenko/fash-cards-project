@@ -1,4 +1,5 @@
 import { pool } from "../db/pool.js";
+import { randomUUID } from "crypto";
 
 export const getAllCards = async (req, res) => {
   try {
@@ -56,6 +57,26 @@ export const updateCard = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
+  }
+};
+
+// Create a new card request
+export const createCard = async (req, res) => {
+  const { question, answer, category } = req.body;
+
+  try {
+    const { rows } = await pool.query(
+      `
+      INSERT INTO flashcards (id, question, answer, category)
+      VALUES ($1, $2, $3, $4)
+      RETURNING *;
+      `,
+      [crypto.randomUUID(), question, answer, category],
+    );
+
+    res.json(rows[0]);
+  } catch (error) {
+    console.log(error);
   }
 };
 

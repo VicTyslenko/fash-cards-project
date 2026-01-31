@@ -7,15 +7,18 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 32px;
 
-  & .study_btn {
-    background-color: #f8cb46;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
-    border: 1px solid black;
-  }
-  & .all-cards_btn {
+  & .tabs_btn {
     border: none;
   }
+  & .tabs_btn:hover {
+    border: 1px solid #2e1401;
+  }
+  & .btn_active {
+    background-color: #f8cb46;
+    border: 1px solid #2e1401;
+    cursor: default;
+  }
+
   & .default-typography {
     font-weight: 600;
     color: #2e1401;
@@ -37,4 +40,5 @@ export const ButtonsWrapp = styled.div`
   background-color: #fff;
   box-shadow: 1px 2px 0px 0px #2e1401;
   border: 1px solid #2e1401;
+  gap: 4px;
 `;

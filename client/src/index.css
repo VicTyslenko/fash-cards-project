@@ -45,9 +45,8 @@
 
 html,
 body {
-  overflow: auto;
   margin: 0;
-
+  overflow-y: scroll;
   background-color: var(--bg-color);
   color: var(--text-color);
 }
