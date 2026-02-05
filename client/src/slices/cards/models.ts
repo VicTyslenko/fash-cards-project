@@ -1,5 +1,3 @@
-import { INITIAL_CARDS_QTY } from "../../shared/utils";
-
 export type Card = {
   id: string;
   question: string;
@@ -15,13 +13,4 @@ export type CardProps = {
   selectedStudyCategories: string[];
   isSelected: boolean;
   cardsLimit: number;
-};
-
-export const initialState: CardProps = {
-  cards: null,
-  isQuestion: true,
-  selectedCategories: [],
-  isSelected: false,
-  cardsLimit: INITIAL_CARDS_QTY,
-  selectedStudyCategories: [],
 };

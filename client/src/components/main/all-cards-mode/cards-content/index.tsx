@@ -1,7 +1,7 @@
 import type { Card } from "../../../../slices/cards/models";
 import { DefaultCard } from "./extensions/default-card";
 import { loadMoreCards } from "../../../../slices/cards/cardsSlice";
-import { useStoreDispatch } from "../../../../hooks";
+import { useStoreDispatch, useStoreSelector } from "../../../../hooks";
 import { DefaultButton } from "../../../../shared/default-button";
 
 import * as S from "./styles";

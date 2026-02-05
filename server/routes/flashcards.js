@@ -1,5 +1,5 @@
 import express from "express";
-import { getCardsLimited, getAllCards, updateCard, resetCard, createCard } from "../controllers/cards.js";
+import { getCardsLimited, getAllCards, updateCard, resetCard, createCard, deleteCard, editCard } from "../controllers/cards.js";
 
 const router = express.Router();
 
@@ -16,4 +16,8 @@ router.post("/card/create", createCard);
 
 // reset card progress
 router.patch("/card/reset/:id", resetCard);
+
+router.post("/card/edit/:id", editCard);
+
+router.delete("/card/delete/:id", deleteCard);
 export default router;

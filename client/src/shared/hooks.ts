@@ -13,10 +13,10 @@ export const useClickOutside = <T extends HTMLElement = HTMLElement>(ref: RefObj
       handler(event);
     };
 
-    document.addEventListener("click", listener);
+    document.addEventListener("pointerdown", listener);
 
     return () => {
-      document.removeEventListener("click", listener);
+      document.removeEventListener("pointerdown", listener);
     };
   }, [ref, handler]);
 };

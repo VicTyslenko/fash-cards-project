@@ -1,19 +1,18 @@
-import { useState } from "react";
+import { useStoreSelector } from "../../hooks";
+import { useStoreDispatch } from "../../hooks";
+import { setModalClose } from "../../slices/modals/modalSlice";
 
 import * as S from "./styles";
 
-type Props = {
-  modalOpen: boolean;
-};
-
 export const DefaultModal = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const dispatch = useStoreDispatch();
+  const body = useStoreSelector((state) => state.modals.modalWindow);
 
   return (
     <>
-      {modalOpen && (
-        <S.ModalOverlay onClick={() => setModalOpen((prev) => !prev)}>
-          <S.ModalInner>Hello from there</S.ModalInner>
+      {body?.isOpen && (
+        <S.ModalOverlay onClick={() => dispatch(setModalClose())}>
+          <S.ModalInner onClick={(event) => event.stopPropagation()}>{body?.children}</S.ModalInner>
         </S.ModalOverlay>
       )}
     </>

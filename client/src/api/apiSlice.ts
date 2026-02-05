@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { GetCardsResponse, GetCards, NewCardProps } from "./models";
+import type { GetCardsResponse, GetCards, NewCardProps, DeleteCardResponse } from "./models";
 import type { Card } from "../slices/cards/models";
 
 export const apiSlice = createApi({
@@ -28,6 +28,15 @@ export const apiSlice = createApi({
       invalidatesTags: ["Cards"],
     }),
 
+    editCard: builder.mutation<Card, { id: string; values: NewCardProps }>({
+      query: ({ id, values }) => ({
+        url: `card/edit/${id}`,
+        method: "POST",
+        body: values,
+      }),
+      invalidatesTags: ["Cards"],
+    }),
+
     // update a card request
     updateCard: builder.mutation<Card, { id: string }>({
       query: ({ id }) => ({
@@ -45,7 +54,22 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Cards"],
     }),
+
+    deleteCard: builder.mutation<DeleteCardResponse, { id: string }>({
+      query: ({ id }) => ({
+        url: `card/delete/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Cards"],
+    }),
   }),
 });
 
-export const { useGetCardsLimitedQuery, useUpdateCardMutation, useResetCardMutation, useGetAllCardsQuery, useCreateCardMutation } = apiSlice;
+export const {
+  useGetCardsLimitedQuery,
+  useUpdateCardMutation,
+  useResetCardMutation,
+  useGetAllCardsQuery,
+  useCreateCardMutation,
+  useEditCardMutation,
+} = apiSlice;

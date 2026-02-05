@@ -3,6 +3,7 @@ import { apiSlice } from "./api/apiSlice";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import cardsReducer from "./slices/cards/cardsSlice";
+import modalReducer from "./slices/modals/modalSlice";
 
 const cardsPersistConfig = {
   key: "cards",
@@ -12,6 +13,7 @@ const cardsPersistConfig = {
 
 const rootReducer = combineReducers({
   cards: persistReducer(cardsPersistConfig, cardsReducer),
+  modals: modalReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 
@@ -19,9 +21,10 @@ export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
+      // serializableCheck: {
+      //   ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      // },
     }).concat(apiSlice.middleware),
 });
 

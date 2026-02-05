@@ -46,7 +46,6 @@
 html,
 body {
   margin: 0;
-  overflow-y: scroll;
   background-color: var(--bg-color);
   color: var(--text-color);
 }
@@ -55,6 +54,7 @@ h1,
 h2,
 h3,
 div,
+hr,
 button {
   margin: 0;
   padding: 0;

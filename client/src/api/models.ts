@@ -16,3 +16,8 @@ export type NewCardProps = {
     category: string;
   };
 };
+
+export type DeleteCardResponse = {
+  message: string;
+  data: Card[];
+};

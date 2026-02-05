@@ -2,7 +2,7 @@ import { pool } from "../db/pool.js";
 import { randomUUID } from "crypto";
 import { checkEmptyFields } from "./utils.js";
 
-export const getAllCards = async (req, res) => {
+export const getAllCards = async (_, res) => {
   try {
     const { rows } = await pool.query(
       `SELECT * FROM flashcards
@@ -15,6 +15,7 @@ export const getAllCards = async (req, res) => {
   }
 };
 
+// Get cards depending on received limit
 export const getCardsLimited = async (req, res) => {
   const limit = Number(req.query.limit) || 12;
 
@@ -36,6 +37,7 @@ export const getCardsLimited = async (req, res) => {
   }
 };
 
+// Update card, using current card id
 export const updateCard = async (req, res) => {
   const { id: cardId } = req.params;
 
@@ -81,7 +83,7 @@ export const createCard = async (req, res) => {
       VALUES ($1, $2, $3, $4)
       RETURNING *;
       `,
-      [crypto.randomUUID(), question, answer, category],
+      [randomUUID(), question, answer, category],
     );
 
     res.json(rows[0]);
@@ -90,6 +92,33 @@ export const createCard = async (req, res) => {
   }
 };
 
+export const editCard = async (req, res) => {
+  const { question, answer, category } = req.body;
+  const { id: cardId } = req.params;
+
+  if (!cardId) {
+    return res.status(400).json({ message: "Id is not found" });
+  }
+
+  try {
+    const { rows } = await pool.query(
+      `
+  UPDATE flashcards
+SET question = $1
+    answer = $2
+    category = $3
+    WHERE id = $4
+    RETURNING *
+  `,
+      [question, answer, category, cardId],
+    );
+
+    return res.status(200).json(rows[0]);
+  } catch (error) {
+    console.log(error);
+  }
+};
+// reset to default card's mastering statistic
 export const resetCard = async (req, res) => {
   const { id: cardId } = req.params;
 
@@ -113,4 +142,28 @@ export const resetCard = async (req, res) => {
   }
 };
 
-// export const filterMastered
+// Delete current card query
+export const deleteCard = async (req, res) => {
+  const { id: cardId } = req.params;
+
+  if (!cardId) {
+    return res.status(400).json({
+      message: "Card id is undefined!",
+    });
+  }
+
+  try {
+    const { rows } = await pool.query(
+      `DELETE FROM flashcards
+       WHERE id = $1
+       RETURNING *
+       `[cardId],
+    );
+    res.status(200).json({
+      message: "Card deleted successfully",
+      data: rows[0],
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
