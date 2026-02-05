@@ -4,9 +4,9 @@ import { DefaultTypography } from "../../../../shared/default-typography";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { defaultValues } from "./data";
+import { type FormProps } from "./models";
 import { toast } from "react-toastify";
 import { useCreateCardMutation } from "../../../../api/apiSlice";
-import { type NewCardProps } from "../../../../api/models";
 
 import PlusIcon from "@/assets/icons/icon-circle-plus.svg";
 import ErrorIcon from "@/assets/icons/icon-error.svg";
@@ -18,13 +18,13 @@ export const NewCardForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<NewCardProps>({
+  } = useForm<FormProps>({
     defaultValues,
     resolver: zodResolver(validationSchema),
   });
 
   const [createCard] = useCreateCardMutation();
-  const onSubmit = async (values: NewCardProps) => {
+  const onSubmit = async (values: FormProps) => {
     try {
       const response = await createCard(values).unwrap();
       toast.success("Card created successfully.");
@@ -39,31 +39,31 @@ export const NewCardForm = () => {
     <S.Form className="new-card_form" onSubmit={handleSubmit(onSubmit)}>
       <S.InputWrapp>
         <S.Label>Question</S.Label>
-        <S.Input {...register("values.question")} placeholder="e.g., What is the capital of France?" />
+        <S.Input {...register("question")} placeholder="e.g., What is the capital of France?" />
       </S.InputWrapp>
-      {errors?.values?.question?.message && (
+      {errors?.question?.message && (
         <S.ErrorMessage>
           <img src={ErrorIcon} alt="error" />
-          <span>{errors.values.question.message}</span>
+          <span>{errors.question.message}</span>
         </S.ErrorMessage>
       )}
       <S.InputWrapp className="hello">
         <S.Label htmlFor="area-input">Answer</S.Label>
-        <S.TextArea {...register("values.answer")} id="area-input" className="area-input" placeholder="e.g., Paris" />
-        {errors?.values?.answer?.message && (
+        <S.TextArea {...register("answer")} id="area-input" className="area-input" placeholder="e.g., Paris" />
+        {errors?.answer?.message && (
           <S.ErrorMessage>
             <img src={ErrorIcon} alt="error" />
-            <span>{errors.values.answer.message}</span>
+            <span>{errors.answer.message}</span>
           </S.ErrorMessage>
         )}
       </S.InputWrapp>
       <S.InputWrapp>
         <S.Label htmlFor="category-input">Category</S.Label>
-        <S.Input {...register("values.category")} id="category-input" type="text" placeholder="e.g., What is the capital of France?" />
-        {errors?.values?.category?.message && (
+        <S.Input {...register("category")} id="category-input" type="text" placeholder="e.g., What is the capital of France?" />
+        {errors?.category?.message && (
           <S.ErrorMessage>
             <img src={ErrorIcon} alt="error" />
-            <span>{errors.values.category.message}</span>
+            <span>{errors.category.message}</span>
           </S.ErrorMessage>
         )}
       </S.InputWrapp>

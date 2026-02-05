@@ -1,6 +1,7 @@
 import { DefaultTypography } from "../../../../../../shared/default-typography";
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 import { useEditCardMutation } from "../../../../../../api/apiSlice";
 import { type FormProps } from "../../../new-card-form/models";
 import { ErrorMessage } from "../../../new-card-form/styles";
@@ -9,43 +10,46 @@ import { defaultValues } from "./data";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import * as S from "./styles";
+import type { Card } from "../../../../../../slices/cards/models";
 
-type EditFormProps = {
-  values: {
-    question: string;
-    answer: string;
-    category: string;
-  };
-};
-export const EditCardForm = ({ id }: { id: string }) => {
-  console.log("current id", id);
+export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Card }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues,
     resolver: zodResolver(validationSchema),
   });
-
   const [editCard] = useEditCardMutation();
 
-  const onSubmit = async (values: EditFormProps) => {
-    console.log(values);
-
+  // Submit function to edit card
+  const onSubmit = async (values: FormProps) => {
     try {
-      await editCard({ id, values });
+      await editCard({ id, values }).unwrap();
     } catch (error) {
       console.log(error);
     }
   };
+  // setting the default values when open form to the current card values
+  useEffect(() => {
+    if (currentCard) {
+      reset({
+        question: currentCard.question,
+        answer: currentCard.answer,
+        category: currentCard.category,
+      });
+    }
+  }, [currentCard, reset]);
+
   return (
     <S.Wrapper>
       <DefaultTypography as="h1">Edit your card</DefaultTypography>
 
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.Label>Question</S.Label>
-        <S.Input {...register("question")} placeholder="question..." />
+        <S.Input {...register("question")} placeholder={currentCard.question} />
         {errors.question?.message && <ErrorMessage>{errors.question.message}</ErrorMessage>}
 
         <S.Label>Answer</S.Label>

@@ -94,6 +94,7 @@ export const createCard = async (req, res) => {
 
 export const editCard = async (req, res) => {
   const { question, answer, category } = req.body;
+
   const { id: cardId } = req.params;
 
   if (!cardId) {
@@ -104,8 +105,8 @@ export const editCard = async (req, res) => {
     const { rows } = await pool.query(
       `
   UPDATE flashcards
-SET question = $1
-    answer = $2
+  SET question = $1,
+    answer = $2,
     category = $3
     WHERE id = $4
     RETURNING *
@@ -157,13 +158,14 @@ export const deleteCard = async (req, res) => {
       `DELETE FROM flashcards
        WHERE id = $1
        RETURNING *
-       `[cardId],
+       `,
+      [cardId],
     );
     res.status(200).json({
       message: "Card deleted successfully",
       data: rows[0],
     });
   } catch (error) {
-    console.log(error);
+    console.log("error message", error);
   }
 };

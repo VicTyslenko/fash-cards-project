@@ -9,12 +9,10 @@ export type GetCards = {
   allCards: Card[];
 };
 
-export type NewCardProps = {
-  values: {
-    question: string;
-    answer: string;
-    category: string;
-  };
+export type BodyProps = {
+  question: string;
+  answer: string;
+  category: string;
 };
 
 export type DeleteCardResponse = {

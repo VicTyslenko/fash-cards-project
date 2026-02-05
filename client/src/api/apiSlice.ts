@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { GetCardsResponse, GetCards, NewCardProps, DeleteCardResponse } from "./models";
+import type { GetCardsResponse, GetCards, DeleteCardResponse, BodyProps } from "./models";
 import type { Card } from "../slices/cards/models";
 
 export const apiSlice = createApi({
@@ -19,8 +19,8 @@ export const apiSlice = createApi({
     }),
 
     // create a new card request
-    createCard: builder.mutation<GetCards, NewCardProps>({
-      query: ({ values }) => ({
+    createCard: builder.mutation<GetCards, BodyProps>({
+      query: (values) => ({
         url: `card/create`,
         method: "POST",
         body: values,
@@ -28,7 +28,7 @@ export const apiSlice = createApi({
       invalidatesTags: ["Cards"],
     }),
 
-    editCard: builder.mutation<Card, { id: string; values: NewCardProps }>({
+    editCard: builder.mutation<Card, { id: string; values: BodyProps }>({
       query: ({ id, values }) => ({
         url: `card/edit/${id}`,
         method: "POST",
@@ -54,7 +54,7 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ["Cards"],
     }),
-
+    // Delete current card query
     deleteCard: builder.mutation<DeleteCardResponse, { id: string }>({
       query: ({ id }) => ({
         url: `card/delete/${id}`,
@@ -72,4 +72,5 @@ export const {
   useGetAllCardsQuery,
   useCreateCardMutation,
   useEditCardMutation,
+  useDeleteCardMutation,
 } = apiSlice;

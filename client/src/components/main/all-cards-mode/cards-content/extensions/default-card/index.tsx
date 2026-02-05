@@ -39,7 +39,7 @@ export const DefaultCard = ({ card }: DefaultCardProps) => {
           }}
         >
           <img src={MenuIcon} alt="menu-icon" />
-          {isActive && <CardPopup id={card.id} onClose={() => setIsActive(false)} />}
+          {isActive && <CardPopup currentCard={card} id={card.id} onClose={() => setIsActive(false)} />}
         </S.MenuButton>
       </S.BottomSection>
     </S.CardWrapper>
