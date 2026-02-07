@@ -1,6 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { apiSlice } from "./api/apiSlice";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import popupReducer from "./slices/popup/popupSlice";
 import storage from "redux-persist/lib/storage";
 import cardsReducer from "./slices/cards/cardsSlice";
 import modalReducer from "./slices/modals/modalSlice";
@@ -14,6 +15,7 @@ const cardsPersistConfig = {
 const rootReducer = combineReducers({
   cards: persistReducer(cardsPersistConfig, cardsReducer),
   modals: modalReducer,
+  popup: popupReducer,
   [apiSlice.reducerPath]: apiSlice.reducer,
 });
 

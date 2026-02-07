@@ -1,7 +1,7 @@
 import type { Card } from "../../../../slices/cards/models";
 import { DefaultCard } from "./extensions/default-card";
 import { loadMoreCards } from "../../../../slices/cards/cardsSlice";
-import { useStoreDispatch, useStoreSelector } from "../../../../hooks";
+import { useStoreDispatch } from "../../../../hooks";
 import { DefaultButton } from "../../../../shared/default-button";
 
 import * as S from "./styles";
@@ -23,9 +23,7 @@ export const CardsContent = ({ data, hasMore }: Props) => {
     <>
       <S.CardsContentWrapp>
         {data && data.map((card) => <DefaultCard key={card.id} card={card} />)}
-        <S.ButtonWrapp>
-          <DefaultButton onClick={handleLoadMore}>Load more</DefaultButton>
-        </S.ButtonWrapp>
+        <S.ButtonWrapp>{hasMore && <DefaultButton onClick={handleLoadMore}>Load more</DefaultButton>}</S.ButtonWrapp>
       </S.CardsContentWrapp>
     </>
   );

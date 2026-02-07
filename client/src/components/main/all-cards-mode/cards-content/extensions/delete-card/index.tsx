@@ -1,5 +1,5 @@
 import { Line } from "../../../../../../shared/styles";
-import { toast } from "react-toastify";
+import { setPopupOpen } from "../../../../../../slices/popup/popupSlice";
 import { setModalClose } from "../../../../../../slices/modals/modalSlice";
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { useStoreDispatch } from "../../../../../../hooks";
@@ -18,7 +18,7 @@ export const DeleteCardModal = ({ id }: { id: string }) => {
       await deleteCard({ id }).unwrap();
 
       handleModalClose();
-      toast.success("Card deleted.");
+      dispatch(setPopupOpen("Card deleted."));
     } catch (error) {
       console.log(error);
     }

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  position: relative;
   padding: 32px;
   width: 600px;
   border-radius: var(--corner-radius-16, 16px);

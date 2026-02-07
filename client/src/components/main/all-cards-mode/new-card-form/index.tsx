@@ -2,15 +2,17 @@ import * as S from "./styles";
 import { DefaultButton } from "../../../../shared/default-button";
 import { DefaultTypography } from "../../../../shared/default-typography";
 import { useForm } from "react-hook-form";
+import { setPopupOpen } from "../../../../slices/popup/popupSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { defaultValues } from "./data";
+import { useStoreDispatch } from "../../../../hooks";
 import { type FormProps } from "./models";
-import { toast } from "react-toastify";
 import { useCreateCardMutation } from "../../../../api/apiSlice";
 
 import PlusIcon from "@/assets/icons/icon-circle-plus.svg";
 import ErrorIcon from "@/assets/icons/icon-error.svg";
 import { validationSchema } from "./validationSchema";
+import { ConfirmPopup } from "../../../../shared/confirm-popup";
 
 export const NewCardForm = () => {
   const {
@@ -23,13 +25,14 @@ export const NewCardForm = () => {
     resolver: zodResolver(validationSchema),
   });
 
+  const dispatch = useStoreDispatch();
+
   const [createCard] = useCreateCardMutation();
   const onSubmit = async (values: FormProps) => {
     try {
-      const response = await createCard(values).unwrap();
-      toast.success("Card created successfully.");
+      await createCard(values).unwrap();
+      dispatch(setPopupOpen("Card created successfully."));
       reset();
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -72,6 +75,7 @@ export const NewCardForm = () => {
         <img src={PlusIcon} alt="plus" />
         <DefaultTypography>Create Card</DefaultTypography>
       </DefaultButton>
+      <ConfirmPopup />
     </S.Form>
   );
 };

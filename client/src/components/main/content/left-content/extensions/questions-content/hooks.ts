@@ -49,6 +49,7 @@ export const useQuestionsContent = ({ currentCard, data }: Props) => {
     if (!currentCard) return;
     try {
       await resetCard({ id: currentCard.id }).unwrap();
+      dispatch(setQuestion());
     } catch (error) {
       console.log(error);
     }

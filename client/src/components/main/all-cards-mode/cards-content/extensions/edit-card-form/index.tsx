@@ -2,6 +2,8 @@ import { DefaultTypography } from "../../../../../../shared/default-typography";
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { setModalClose } from "../../../../../../slices/modals/modalSlice";
+import { setPopupOpen } from "../../../../../../slices/popup/popupSlice";
 import { useEditCardMutation } from "../../../../../../api/apiSlice";
 import { type FormProps } from "../../../new-card-form/models";
 import { ErrorMessage } from "../../../new-card-form/styles";
@@ -11,8 +13,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import * as S from "./styles";
 import type { Card } from "../../../../../../slices/cards/models";
+import { useStoreDispatch } from "../../../../../../hooks";
 
 export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Card }) => {
+  const dispatch = useStoreDispatch();
+  const [editCard] = useEditCardMutation();
+
   const {
     register,
     handleSubmit,
@@ -22,12 +28,13 @@ export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Car
     defaultValues,
     resolver: zodResolver(validationSchema),
   });
-  const [editCard] = useEditCardMutation();
 
   // Submit function to edit card
   const onSubmit = async (values: FormProps) => {
     try {
       await editCard({ id, values }).unwrap();
+      dispatch(setModalClose());
+      dispatch(setPopupOpen("Card updated successfully."));
     } catch (error) {
       console.log(error);
     }

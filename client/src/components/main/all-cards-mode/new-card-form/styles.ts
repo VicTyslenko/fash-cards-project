@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const FormWrapp = styled.div``;
 
 export const Form = styled.form`
+  position: relative;
   padding: 32px;
   display: flex;
   flex-direction: column;
