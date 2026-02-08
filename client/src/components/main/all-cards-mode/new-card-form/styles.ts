@@ -8,12 +8,10 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 16px;
-
-  border-radius: var(--corner-radius-16, 16px);
-  border-top: 1px solid var(--colors-neutral-900, #2e1401);
-  border-right: 4px solid var(--colors-neutral-900, #2e1401);
-  border-bottom: 4px solid var(--colors-neutral-900, #2e1401);
-  border-left: 1px solid var(--colors-neutral-900, #2e1401);
+  outline: 1px solid var(--colors-neutral-900, #2e1401);
+  border-right: 3px solid var(--colors-neutral-900, #2e1401);
+  border-bottom: 3px solid var(--colors-neutral-900, #2e1401);
+  border-radius: 16px;
   background: var(--colors-neutral-0, #fff);
 
   & .default-button {

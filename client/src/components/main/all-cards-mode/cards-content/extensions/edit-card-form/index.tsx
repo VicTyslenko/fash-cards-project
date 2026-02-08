@@ -2,6 +2,7 @@ import { DefaultTypography } from "../../../../../../shared/default-typography";
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { scrollWindow } from "../../../../../../shared/utils";
 import { setModalClose } from "../../../../../../slices/modals/modalSlice";
 import { setPopupOpen } from "../../../../../../slices/popup/popupSlice";
 import { useEditCardMutation } from "../../../../../../api/apiSlice";
@@ -35,10 +36,15 @@ export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Car
       await editCard({ id, values }).unwrap();
       dispatch(setModalClose());
       dispatch(setPopupOpen("Card updated successfully."));
+
+      scrollWindow({
+        wrapperId: "app-wrapper",
+      });
     } catch (error) {
       console.log(error);
     }
   };
+
   // setting the default values when open form to the current card values
   useEffect(() => {
     if (currentCard) {

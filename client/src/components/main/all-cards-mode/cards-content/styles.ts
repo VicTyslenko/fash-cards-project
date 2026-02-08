@@ -11,7 +11,7 @@ export const ButtonWrapp = styled.div`
   grid-column: 1 / -1;
   display: flex;
   justify-content: center;
-  margin-bottom: 60px;
+  margin-bottom: 64px;
 
   & .default-button {
     border-radius: var(--corner-radius-full, 999px);

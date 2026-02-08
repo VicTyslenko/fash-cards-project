@@ -4,7 +4,7 @@ import * as S from "./styles";
 
 function App() {
   return (
-    <S.AppWrapper>
+    <S.AppWrapper id="app-wrapper">
       <Main />
       <DefaultModal />
     </S.AppWrapper>

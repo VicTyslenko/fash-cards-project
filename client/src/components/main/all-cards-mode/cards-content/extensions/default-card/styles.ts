@@ -60,7 +60,7 @@ export const MasterSection = styled.div<{ $isMastered?: boolean }>`
   padding: ${({ $isMastered }) => ($isMastered ? "14px 0 14px 8px" : "24px 0 24px 8px")};
 `;
 export const MenuButton = styled.button`
-  min-width: 50px;
+  min-width: 44px;
   position: relative;
   background: var(--colors-neutral-0, #fff);
   cursor: pointer;
