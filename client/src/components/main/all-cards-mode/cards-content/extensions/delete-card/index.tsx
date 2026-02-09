@@ -2,6 +2,7 @@ import { Line } from "../../../../../../shared/styles";
 import { setPopupOpen } from "../../../../../../slices/popup/popupSlice";
 import { setModalClose } from "../../../../../../slices/modals/modalSlice";
 import { DefaultButton } from "../../../../../../shared/default-button";
+import { scrollWindow } from "../../../../../../shared/utils";
 import { useStoreDispatch } from "../../../../../../hooks";
 import { useDeleteCardMutation } from "../../../../../../api/apiSlice";
 
@@ -19,6 +20,9 @@ export const DeleteCardModal = ({ id }: { id: string }) => {
 
       handleModalClose();
       dispatch(setPopupOpen("Card deleted."));
+      scrollWindow({
+        wrapperId: "app-wrapper",
+      });
     } catch (error) {
       console.log(error);
     }

@@ -92,6 +92,7 @@ export const createCard = async (req, res) => {
   }
 };
 
+// Edit card request
 export const editCard = async (req, res) => {
   const { question, answer, category } = req.body;
 

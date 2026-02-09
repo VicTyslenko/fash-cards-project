@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   border-right: 2px solid #2e1401;
   border-bottom: 2px solid #2e1401;
   border-left: 1px solid #2e1401;
+
+    @media screen and (max-width: 768px) {
+min-width: auto;
+  }
 `;
 
 export const InfoWrapp = styled.div`

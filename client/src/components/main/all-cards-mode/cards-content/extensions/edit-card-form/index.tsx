@@ -1,13 +1,13 @@
 import { DefaultTypography } from "../../../../../../shared/default-typography";
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { useForm } from "react-hook-form";
+import { ErrorMessage } from "../../../../../../shared/error-message";
 import { useEffect } from "react";
 import { scrollWindow } from "../../../../../../shared/utils";
 import { setModalClose } from "../../../../../../slices/modals/modalSlice";
 import { setPopupOpen } from "../../../../../../slices/popup/popupSlice";
 import { useEditCardMutation } from "../../../../../../api/apiSlice";
 import { type FormProps } from "../../../new-card-form/models";
-import { ErrorMessage } from "../../../new-card-form/styles";
 import { validationSchema } from "./validation";
 import { defaultValues } from "./data";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +24,7 @@ export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Car
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useForm({
     defaultValues,
     resolver: zodResolver(validationSchema),
@@ -32,6 +32,14 @@ export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Car
 
   // Submit function to edit card
   const onSubmit = async (values: FormProps) => {
+    if (!dirtyFields.question && !dirtyFields.answer && !dirtyFields.category) {
+      dispatch(setModalClose());
+      scrollWindow({
+        wrapperId: "app-wrapper",
+      });
+      return;
+    }
+
     try {
       await editCard({ id, values }).unwrap();
       dispatch(setModalClose());
@@ -63,15 +71,15 @@ export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Car
       <S.Form onSubmit={handleSubmit(onSubmit)}>
         <S.Label>Question</S.Label>
         <S.Input {...register("question")} placeholder={currentCard.question} />
-        {errors.question?.message && <ErrorMessage>{errors.question.message}</ErrorMessage>}
+        {errors.question?.message && <ErrorMessage message={errors.question.message} />}
 
         <S.Label>Answer</S.Label>
         <S.TextArea {...register("answer")} placeholder="answer..." />
-        {errors.answer?.message && <ErrorMessage>{errors.answer.message}</ErrorMessage>}
+        {errors.answer?.message && <ErrorMessage message={errors.answer.message} />}
 
         <S.Label>Category</S.Label>
         <S.Input {...register("category")} placeholder="category..." />
-        {errors.category?.message && <ErrorMessage>{errors.category.message}</ErrorMessage>}
+        {errors.category?.message && <ErrorMessage message={errors.category.message} />}
 
         <S.ButtonWrapp>
           <DefaultButton type="submit">Update Card</DefaultButton>

@@ -7,4 +7,8 @@ export const AppWrapper = styled.div`
   padding-top: 24px;
   height: 100vh;
   overflow: auto;
+
+  @media screen and (max-width: 768px) {
+    padding: 20px 32px 64px;
+  }
 `;

@@ -10,9 +10,9 @@ export type GetCards = {
 };
 
 export type BodyProps = {
-  question: string;
-  answer: string;
-  category: string;
+  question?: string;
+  answer?: string;
+  category?: string;
 };
 
 export type DeleteCardResponse = {

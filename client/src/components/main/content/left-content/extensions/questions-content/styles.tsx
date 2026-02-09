@@ -60,6 +60,10 @@ export const StyledButton = styled(DefaultButton)<StyledButtonProps>`
     font-weight: 600;
     line-height: 120%;
   }
+
+  @media screen and (max-width: 768px) {
+    min-height: 360px;
+  }
 `;
 
 export const CategoryInfo = styled.div`
