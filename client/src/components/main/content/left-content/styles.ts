@@ -4,12 +4,17 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 3;
+  flex: 2;
+  min-width: 0; /* Prevents overflow */
   border-radius: 16px;
-  border-top: 3px solid #2e1401;
-  border-right: 3px solid #2e1401;
-  border-bottom: 3px solid #2e1401;
-  border-left: 1px solid #2e1401;
+  outline: 3px solid #2e1401;
+  outline-offset: -3px; /* Inset the outline to match border positioning */
   background: #fff;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+  /* Mobile - full width */
+  @media screen and (max-width: 768px) {
+    flex: 1;
+    width: 100%;
+  }
 `;

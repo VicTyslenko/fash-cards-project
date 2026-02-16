@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  width: 100%;
+  /* width: 100%; */
   padding: 24px;
   background-color: #fff;
   flex: 1;
   border-radius: 16px;
-  border-top: 1px solid #2e1401;
-  border-right: 3px solid #2e1401;
-  border-bottom: 3px solid #2e1401;
-  border-left: 1px solid #2e1401;
+  outline: 3px solid #2e1401;
+  outline-offset: -3px; /* Inset the outline to match border positioning */
+  height: fit-content; /* Allow natural height */
 
   & .title {
     font-size: 24px;
