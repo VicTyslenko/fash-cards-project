@@ -24,7 +24,7 @@ export const Filter = ({ data }: FilterProps) => {
         </S.CheckBoxWrapp>
       </S.FlexWrapp>
 
-      <DefaultButton>
+      <DefaultButton onClick={handleShuffleCards}>
         <img src={ShuffleIcon} alt="shuffle" />
         <DefaultTypography>Shuffle</DefaultTypography>
       </DefaultButton>

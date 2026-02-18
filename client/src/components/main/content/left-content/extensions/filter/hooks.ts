@@ -1,7 +1,7 @@
 import { useSearchParams } from "react-router";
 import { useStoreDispatch } from "../../../../../../hooks";
 import { setQuestion } from "../../../../../../slices/cards/cardsSlice";
-import { shuffleCards } from "./utils";
+import { apiSlice } from "../../../../../../api/apiSlice";
 import { getCategoriesQuantity } from "./utils";
 import type { UseFilterArgs } from "./models";
 
@@ -23,7 +23,14 @@ export const useFilter = ({ data }: UseFilterArgs) => {
     });
   };
 
-  const handleShuffleCards = () => shuffleCards({ arr: data });
+  const handleShuffleCards = () => {
+    dispatch(
+      apiSlice.util.updateQueryData("getAllCards", undefined, (draft) => {
+        draft.allCards = [...draft.allCards].sort(() => Math.random() - 0.5);
+      })
+    );
+  };
+
   const categories = getCategoriesQuantity({ data });
 
   return {
