@@ -27,10 +27,10 @@ export const PaginationSection = ({ total, currentIndex, data, currentCard }: Pr
       return sp;
     });
   };
-
   const handleNextCard = () => {
     if (!data.length) return;
     const idx = data.findIndex((el) => el.id === currentCard?.id);
+
     if (idx >= data.length - 1) return;
 
     setSearchParams((sp) => {
@@ -38,6 +38,7 @@ export const PaginationSection = ({ total, currentIndex, data, currentCard }: Pr
       return sp;
     });
   };
+
   return (
     <S.Wrapper>
       <DefaultButton onClick={handlePreviousCard}>

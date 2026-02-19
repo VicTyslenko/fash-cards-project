@@ -3,9 +3,9 @@ import { useStoreDispatch } from "../../../../../../hooks";
 import { setQuestion } from "../../../../../../slices/cards/cardsSlice";
 import { apiSlice } from "../../../../../../api/apiSlice";
 import { getCategoriesQuantity } from "./utils";
-import type { UseFilterArgs } from "./models";
+import type { FilterProps } from "./models";
 
-export const useFilter = ({ data }: UseFilterArgs) => {
+export const useFilter = ({ data }: FilterProps) => {
   const dispatch = useStoreDispatch();
   const handleSetQuestion = () => dispatch(setQuestion());
 
@@ -24,11 +24,22 @@ export const useFilter = ({ data }: UseFilterArgs) => {
   };
 
   const handleShuffleCards = () => {
+    const filteredIds = new Set(data.map((c) => c.id));
+    let newFirstId: string | undefined;
+
     dispatch(
       apiSlice.util.updateQueryData("getAllCards", undefined, (draft) => {
         draft.allCards = [...draft.allCards].sort(() => Math.random() - 0.5);
-      })
+        newFirstId = draft.allCards.find((c) => filteredIds.has(c.id))?.id;
+      }),
     );
+
+    if (newFirstId) {
+      setSearchParams((sp) => {
+        sp.set("cardId", newFirstId!);
+        return sp;
+      });
+    }
   };
 
   const categories = getCategoriesQuantity({ data });

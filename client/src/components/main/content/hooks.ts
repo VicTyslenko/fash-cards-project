@@ -23,7 +23,7 @@ export const useGetFilteredData = () => {
     isMastered,
     data: allCards,
     categories,
-  }); 
+  });
 
   const cardId = searchParams.get("cardId");
   const currentCard = filteredData?.find((c) => c.id === cardId);

@@ -18,7 +18,7 @@ export const QuestionsContent = ({ currentCard, data }: QuestionProps) => {
     currentCard,
     data,
   });
-  
+
   return (
     <S.Wrapper>
       <S.StyledButton $allMastered={!data.length} onClick={handleToggleCard} $isQuestion={isQuestion}>
