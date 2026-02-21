@@ -1,6 +1,7 @@
+import { useGetFilteredData } from "./hooks";
+
 import { LeftContent } from "./left-content";
 import { RightContent } from "./right-content";
-import { useGetFilteredData } from "./hooks";
 
 import * as S from "./styles";
 

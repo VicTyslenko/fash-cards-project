@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Prevent overflow, let children handle scrolling */
+  overflow: hidden;
 
   @media screen and (max-width: 768px) {
     /* Account for bottom padding on mobile */

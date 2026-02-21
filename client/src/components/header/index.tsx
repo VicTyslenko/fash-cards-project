@@ -1,9 +1,12 @@
-import * as S from "./styles";
-import Logo from "@/assets/icons/logo-small.svg";
-import { ModeParams } from "../main/models";
-import { DefaultTypography } from "../../shared/default-typography";
-import { DefaultButton } from "../../shared/default-button";
 import { useSearchParams } from "react-router";
+
+import Logo from "@/assets/icons/logo-small.svg";
+
+import { DefaultButton } from "../../shared/default-button";
+import { DefaultTypography } from "../../shared/default-typography";
+import { ModeParams } from "../main/models";
+
+import * as S from "./styles";
 
 export const Header = () => {
   const [searchParams, setSearchParams] = useSearchParams();

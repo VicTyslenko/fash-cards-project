@@ -1,9 +1,11 @@
 import { useSearchParams } from "react-router";
+
 import { useStoreDispatch } from "../../../../../../hooks";
-import { setQuestion } from "../../../../../../slices/cards/cardsSlice";
+
 import { apiSlice } from "../../../../../../api/apiSlice";
-import { getCategoriesQuantity } from "./utils";
+import { setQuestion } from "../../../../../../slices/cards/cardsSlice";
 import type { FilterProps } from "./models";
+import { getCategoriesQuantity } from "./utils";
 
 export const useFilter = ({ data }: FilterProps) => {
   const dispatch = useStoreDispatch();

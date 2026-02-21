@@ -1,9 +1,9 @@
+import { useDefaultParameters } from "./hooks";
+
 import { Header } from "../header";
+import { AllCardsMode } from "./all-cards-mode";
 import { Content } from "./content";
 import { ModeParams } from "./models";
-
-import { AllCardsMode } from "./all-cards-mode";
-import { useDefaultParameters } from "./hooks";
 
 import * as S from "./styles";
 

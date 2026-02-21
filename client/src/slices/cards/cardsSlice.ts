@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { ModeParams } from "../../components/main/models";
 
+import { ModeParams } from "../../components/main/models";
 import { initialState } from "./data";
 
 export const cardsSlice = createSlice({

@@ -1,8 +1,10 @@
-import { DefaultButton } from "../../../../../../shared/default-button";
 import { useSearchParams } from "react-router";
-import { DefaultTypography } from "../../../../../../shared/default-typography";
+
 import LeftIcon from "@/assets/icons/icon-chevron-left.svg";
 import RightIcon from "@/assets/icons/icon-chevron-right.svg";
+
+import { DefaultButton } from "../../../../../../shared/default-button";
+import { DefaultTypography } from "../../../../../../shared/default-typography";
 import type { Card } from "../../../../../../slices/cards/models";
 
 import * as S from "./styles";

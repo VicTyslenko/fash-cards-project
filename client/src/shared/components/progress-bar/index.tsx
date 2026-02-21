@@ -1,5 +1,6 @@
 import { DefaultTypography } from "../../default-typography";
 import { MAX_KNOWN } from "../../utils";
+
 import * as S from "./styles";
 
 export const ProgressBar = ({ progressValue }: { progressValue: number }) => {

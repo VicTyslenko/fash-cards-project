@@ -26,6 +26,7 @@ type ScrollProps = {
 
 export const scrollWindow = ({ wrapperId, options }: ScrollProps) => {
   const wrapper = document.getElementById(wrapperId);
+
   if (!wrapper) return;
 
   wrapper.scrollTo({

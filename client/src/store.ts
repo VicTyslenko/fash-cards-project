@@ -1,10 +1,11 @@
-import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import { apiSlice } from "./api/apiSlice";
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
-import popupReducer from "./slices/popup/popupSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+
+import { apiSlice } from "./api/apiSlice";
 import cardsReducer from "./slices/cards/cardsSlice";
 import modalReducer from "./slices/modals/modalSlice";
+import popupReducer from "./slices/popup/popupSlice";
 
 const cardsPersistConfig = {
   key: "cards",

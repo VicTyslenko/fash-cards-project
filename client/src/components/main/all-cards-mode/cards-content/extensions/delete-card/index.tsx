@@ -1,11 +1,12 @@
-import { Line } from "../../../../../../shared/styles";
-import { setPopupOpen } from "../../../../../../slices/popup/popupSlice";
-import { setModalClose } from "../../../../../../slices/modals/modalSlice";
+import { useStoreDispatch } from "../../../../../../hooks";
+
+import { useDeleteCardMutation } from "../../../../../../api/apiSlice";
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { scrollWindow } from "../../../../../../shared/utils";
-import { useStoreDispatch } from "../../../../../../hooks";
-import { useDeleteCardMutation } from "../../../../../../api/apiSlice";
+import { setModalClose } from "../../../../../../slices/modals/modalSlice";
+import { setPopupOpen } from "../../../../../../slices/popup/popupSlice";
 
+import { Line } from "../../../../../../shared/styles";
 import * as S from "./styles";
 
 export const DeleteCardModal = ({ id }: { id: string }) => {
@@ -21,10 +22,10 @@ export const DeleteCardModal = ({ id }: { id: string }) => {
       handleModalClose();
       dispatch(setPopupOpen("Card deleted."));
       scrollWindow({
-        wrapperId: "app-wrapper",
+        wrapperId: "all-cards_wrapper",
       });
     } catch (error) {
-      console.log(error);
+      throw new Error(`Something happened wrong: ${error}`);
     }
   };
 

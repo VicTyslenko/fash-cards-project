@@ -1,17 +1,20 @@
 import { useRef } from "react";
 
-import { NewPopup } from "../../../../../../shared/new-popup";
-import EditIcon from "@/assets/icons/icon-edit.svg";
-import type { Card } from "../../../../../../slices/cards/models";
-import { Line } from "../../../../../../shared/styles";
 import DeleteIcon from "@/assets/icons/icon-delete.svg";
-import { EditCardForm } from "../edit-card-form";
-import { DeleteCardModal } from "../delete-card";
+import EditIcon from "@/assets/icons/icon-edit.svg";
+
 import { useStoreDispatch } from "../../../../../../hooks";
-import { DefaultTypography } from "../../../../../../shared/default-typography";
-import * as S from "./styles";
-import { setModalOpen } from "../../../../../../slices/modals/modalSlice";
 import { useClickOutside } from "../../../../../../shared/hooks";
+
+import { DefaultTypography } from "../../../../../../shared/default-typography";
+import { NewPopup } from "../../../../../../shared/new-popup";
+import type { Card } from "../../../../../../slices/cards/models";
+import { setModalOpen } from "../../../../../../slices/modals/modalSlice";
+import { DeleteCardModal } from "../delete-card";
+import { EditCardForm } from "../edit-card-form";
+
+import { Line } from "../../../../../../shared/styles";
+import * as S from "./styles";
 
 type Props = {
   onClose: () => void;

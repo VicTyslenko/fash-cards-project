@@ -1,15 +1,17 @@
-import type { QuestionProps } from "../models";
-import { DefaultTypography } from "../../../../../../shared/default-typography";
-import YellowStar from "@/assets/icons/pattern-star-yellow.svg";
-import BlueStar from "@/assets/icons/pattern-star-blue.svg";
-import PinkStar from "@/assets/icons/pattern-star-pink.svg";
-import { EmptyCard } from "../empty-card";
-import { ProgressBar } from "../../../../../../shared/components/progress-bar";
 import IconCheck from "@/assets/icons/icon-circle-check.svg";
 import IconReset from "@/assets/icons/icon-reset.svg";
-import { MasteredInfo } from "../../../../../../shared/mastered-info";
-import { DefaultButton } from "../../../../../../shared/default-button";
+import BlueStar from "@/assets/icons/pattern-star-blue.svg";
+import PinkStar from "@/assets/icons/pattern-star-pink.svg";
+import YellowStar from "@/assets/icons/pattern-star-yellow.svg";
+
 import { useQuestionsContent } from "./hooks";
+
+import { ProgressBar } from "../../../../../../shared/components/progress-bar";
+import { DefaultButton } from "../../../../../../shared/default-button";
+import { DefaultTypography } from "../../../../../../shared/default-typography";
+import { MasteredInfo } from "../../../../../../shared/mastered-info";
+import { EmptyCard } from "../empty-card";
+import type { QuestionProps } from "../models";
 
 import * as S from "./styles";
 

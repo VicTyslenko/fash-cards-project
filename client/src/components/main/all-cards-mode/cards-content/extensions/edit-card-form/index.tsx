@@ -1,20 +1,23 @@
-import { DefaultTypography } from "../../../../../../shared/default-typography";
-import { DefaultButton } from "../../../../../../shared/default-button";
-import { useForm } from "react-hook-form";
-import { ErrorMessage } from "../../../../../../shared/error-message";
 import { useEffect } from "react";
+
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+import { useStoreDispatch } from "../../../../../../hooks";
+
+import { useEditCardMutation } from "../../../../../../api/apiSlice";
+import { DefaultButton } from "../../../../../../shared/default-button";
+import { DefaultTypography } from "../../../../../../shared/default-typography";
+import { ErrorMessage } from "../../../../../../shared/error-message";
 import { scrollWindow } from "../../../../../../shared/utils";
+import type { Card } from "../../../../../../slices/cards/models";
 import { setModalClose } from "../../../../../../slices/modals/modalSlice";
 import { setPopupOpen } from "../../../../../../slices/popup/popupSlice";
-import { useEditCardMutation } from "../../../../../../api/apiSlice";
 import { type FormProps } from "../../../new-card-form/models";
-import { validationSchema } from "./validation";
 import { defaultValues } from "./data";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { validationSchema } from "./validation";
 
 import * as S from "./styles";
-import type { Card } from "../../../../../../slices/cards/models";
-import { useStoreDispatch } from "../../../../../../hooks";
 
 export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Card }) => {
   const dispatch = useStoreDispatch();
@@ -35,7 +38,7 @@ export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Car
     if (!dirtyFields.question && !dirtyFields.answer && !dirtyFields.category) {
       dispatch(setModalClose());
       scrollWindow({
-        wrapperId: "app-wrapper",
+        wrapperId: "all-cards_wrapper",
       });
       return;
     }
@@ -46,7 +49,7 @@ export const EditCardForm = ({ id, currentCard }: { id: string; currentCard: Car
       dispatch(setPopupOpen("Card updated successfully."));
 
       scrollWindow({
-        wrapperId: "app-wrapper",
+        wrapperId: "all-cards_wrapper",
       });
     } catch (error) {
       console.log(error);

@@ -1,8 +1,9 @@
 import IconMastered from "@/assets/icons/icon-mastered.svg";
 
-import * as S from "./styles";
 import { DefaultTypography } from "../default-typography";
 import { MAX_KNOWN } from "../utils";
+
+import * as S from "./styles";
 
 export const MasteredInfo = () => {
   return (

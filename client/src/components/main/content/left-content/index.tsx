@@ -1,10 +1,11 @@
-import { QuestionsContent } from "./extensions/questions-content";
-import { PaginationSection } from "./extensions/pagination-section";
-import { Filter } from "./extensions/filter";
+import { useSearchParams } from "react-router";
+
 import type { DataProps } from "../models";
+import { Filter } from "./extensions/filter";
+import { PaginationSection } from "./extensions/pagination-section";
+import { QuestionsContent } from "./extensions/questions-content";
 
 import * as S from "./styles";
-import { useSearchParams } from "react-router";
 
 export const LeftContent = ({ data, filteredData }: DataProps) => {
   const [searchParams] = useSearchParams();

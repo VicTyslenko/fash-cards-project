@@ -1,11 +1,13 @@
+import ShuffleIcon from "@/assets/icons/icon-shuffle.svg";
+
+import { useFilter } from "./hooks";
+
+import { CheckBoxInput } from "../../../../../../shared/check-box-input";
 import { DefaultButton } from "../../../../../../shared/default-button";
 import { DefaultTypography } from "../../../../../../shared/default-typography";
 import { DropDown } from "./extensions/dropdown";
-import { CheckBoxInput } from "../../../../../../shared/check-box-input";
 import type { FilterProps } from "./models";
 
-import ShuffleIcon from "@/assets/icons/icon-shuffle.svg";
-import { useFilter } from "./hooks";
 import * as S from "./styles";
 
 export const Filter = ({ data }: FilterProps) => {

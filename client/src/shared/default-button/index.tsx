@@ -1,4 +1,5 @@
 import type { HTMLProps, ReactNode } from "react";
+
 import { Button } from "./styles";
 
 interface DefaultButtonProps extends HTMLProps<HTMLButtonElement> {

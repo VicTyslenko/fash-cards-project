@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { DefaultTypography } from "../../../../../../shared/default-typography";
-import { CategoryInfo } from "../../../../content/left-content/extensions/questions-content/styles";
+
 import MenuIcon from "@/assets/icons/icon-menu.svg";
-import type { DefaultCardProps } from "./models";
+
 import { ProgressBar } from "../../../../../../shared/components/progress-bar";
+import { DefaultTypography } from "../../../../../../shared/default-typography";
 import { MasteredInfo } from "../../../../../../shared/mastered-info";
 import { MAX_KNOWN } from "../../../../../../shared/utils";
 import { CardPopup } from "../card-popup";
+import type { DefaultCardProps } from "./models";
 
+import { CategoryInfo } from "../../../../content/left-content/extensions/questions-content/styles";
 import * as S from "./styles";
 
 export const DefaultCard = ({ card }: DefaultCardProps) => {

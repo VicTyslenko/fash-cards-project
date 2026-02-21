@@ -1,18 +1,21 @@
-import * as S from "./styles";
-import { DefaultButton } from "../../../../shared/default-button";
-import { DefaultTypography } from "../../../../shared/default-typography";
-import { useForm } from "react-hook-form";
-import { ErrorMessage } from "../../../../shared/error-message";
-import { setPopupOpen } from "../../../../slices/popup/popupSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { defaultValues } from "./data";
-import { useStoreDispatch } from "../../../../hooks";
-import { type FormProps } from "./models";
-import { useCreateCardMutation } from "../../../../api/apiSlice";
+import { useForm } from "react-hook-form";
 
 import PlusIcon from "@/assets/icons/icon-circle-plus.svg";
-import { validationSchema } from "./validationSchema";
+
+import { useStoreDispatch } from "../../../../hooks";
+
+import { useCreateCardMutation } from "../../../../api/apiSlice";
 import { ConfirmPopup } from "../../../../shared/confirm-popup";
+import { DefaultButton } from "../../../../shared/default-button";
+import { DefaultTypography } from "../../../../shared/default-typography";
+import { ErrorMessage } from "../../../../shared/error-message";
+import { setPopupOpen } from "../../../../slices/popup/popupSlice";
+import { defaultValues } from "./data";
+import { type FormProps } from "./models";
+import { validationSchema } from "./validationSchema";
+
+import * as S from "./styles";
 
 export const NewCardForm = () => {
   const {
@@ -34,7 +37,7 @@ export const NewCardForm = () => {
       dispatch(setPopupOpen("Card created successfully."));
       reset();
     } catch (error) {
-      console.log(error);
+      throw new Error(`Something happend wrong: ${error}`);
     }
   };
 

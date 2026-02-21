@@ -1,10 +1,15 @@
-import type { Card } from "../../../../../../slices/cards/models";
-import { useUpdateCardMutation, useResetCardMutation } from "../../../../../../api/apiSlice";
-import { useStoreSelector, useStoreDispatch } from "../../../../../../hooks";
 import { useSearchParams } from "react-router";
+
+import { useStoreDispatch, useStoreSelector } from "../../../../../../hooks";
+
+import {
+  useResetCardMutation,
+  useUpdateCardMutation,
+} from "../../../../../../api/apiSlice";
+import { MAX_KNOWN } from "../../../../../../shared/utils";
 import { setQuestion } from "../../../../../../slices/cards/cardsSlice";
 import { toggleCard } from "../../../../../../slices/cards/cardsSlice";
-import { MAX_KNOWN } from "../../../../../../shared/utils";
+import type { Card } from "../../../../../../slices/cards/models";
 
 type Props = {
   currentCard?: Card;
@@ -58,5 +63,12 @@ export const useQuestionsContent = ({ currentCard, data }: Props) => {
   const progressCount = currentCard?.known_count ?? 0;
 
   const isMastered = progressCount >= MAX_KNOWN;
-  return { handleCardUpdate, progressCount, isMastered, handleResetCard, handleToggleCard, isQuestion };
+  return {
+    handleCardUpdate,
+    progressCount,
+    isMastered,
+    handleResetCard,
+    handleToggleCard,
+    isQuestion,
+  };
 };

@@ -1,5 +1,6 @@
 import { useStoreSelector } from "../../hooks";
 import { useStoreDispatch } from "../../hooks";
+
 import { setModalClose } from "../../slices/modals/modalSlice";
 
 import * as S from "./styles";

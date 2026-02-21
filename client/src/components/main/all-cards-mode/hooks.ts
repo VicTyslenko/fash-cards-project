@@ -1,6 +1,8 @@
 import { useSearchParams } from "react-router";
-import { useGetCardsLimitedQuery } from "../../../api/apiSlice";
+
 import { useStoreSelector } from "../../../hooks";
+
+import { useGetCardsLimitedQuery } from "../../../api/apiSlice";
 import { filterDataByCategories } from "../../../shared/utils";
 
 export const useAllCardsMode = () => {

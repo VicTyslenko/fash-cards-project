@@ -1,4 +1,5 @@
 import ErrorIcon from "@/assets/icons/icon-error.svg";
+
 import * as S from "./styles";
 
 type Props = {

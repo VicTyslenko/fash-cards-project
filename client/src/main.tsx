@@ -1,10 +1,11 @@
 import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router";
+import { PersistGate } from "redux-persist/integration/react";
+
 import App from "./App.tsx";
 import { store } from "./store.ts";
-import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "./store.ts";
-import { BrowserRouter } from "react-router";
-import { Provider } from "react-redux";
 
 import "./index.css";
 

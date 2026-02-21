@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  position: absolute;
+  position: fixed;
   z-index: 999;
-  top: 8px;
-  right: -60px;
+  top: 24px;
+  right: 24px;
   padding: 10px 16px;
   border-radius: var(--corner-radius-full, 999px);
   border: 1px solid var(--colors-neutral-900, #2e1401);

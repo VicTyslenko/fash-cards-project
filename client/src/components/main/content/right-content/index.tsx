@@ -1,8 +1,9 @@
+import { useRightContent } from "./hooks";
+
 import { DefaultTypography } from "../../../../shared/default-typography";
+import type { DataProps } from "../models";
 import { StatisticCard } from "./extensions/statistic-card";
 import { cardStructure } from "./utils";
-import type { DataProps } from "../models";
-import { useRightContent } from "./hooks";
 
 import * as S from "./styles";
 

@@ -1,8 +1,11 @@
+import { useEffect } from "react";
+
 import { useSearchParams } from "react-router";
+
 import { useStoreSelector } from "../../../hooks";
+
 import { useGetAllCardsQuery } from "../../../api/apiSlice";
 import { filterDataByCategories } from "../../../shared/utils";
-import { useEffect } from "react";
 import { ModeParams } from "../models";
 
 export const useGetFilteredData = () => {

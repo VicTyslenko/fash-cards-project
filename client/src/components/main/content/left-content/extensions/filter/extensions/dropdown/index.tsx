@@ -1,12 +1,16 @@
+import { useRef, useState } from "react";
+
+import { useSearchParams } from "react-router";
+
+import ArrowDown from "@/assets/icons/icon-chevron-down.svg";
+
+import { useStoreDispatch, useStoreSelector } from "../../../../../../../../hooks";
+import { useClickOutside } from "../../../../../../../../shared/hooks";
+
 import { CheckBoxInput } from "../../../../../../../../shared/check-box-input";
 import { DefaultTypography } from "../../../../../../../../shared/default-typography";
-import { useSearchParams } from "react-router";
-import { useRef, useState } from "react";
-import { ModeParams } from "../../../../../../models";
-import { useStoreDispatch, useStoreSelector } from "../../../../../../../../hooks";
 import { selectCategories } from "../../../../../../../../slices/cards/cardsSlice";
-import ArrowDown from "@/assets/icons/icon-chevron-down.svg";
-import { useClickOutside } from "../../../../../../../../shared/hooks";
+import { ModeParams } from "../../../../../../models";
 
 import * as S from "./styles";
 

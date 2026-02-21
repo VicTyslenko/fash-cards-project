@@ -1,7 +1,7 @@
-import TotalIcon from "@/assets/icons/icon-stats-total.svg";
-import MasteredIcon from "@/assets/icons/icon-stats-mastered.svg";
 import ProgressIcon from "@/assets/icons/icon-stats-in-progress.svg";
+import MasteredIcon from "@/assets/icons/icon-stats-mastered.svg";
 import NotStartedIcon from "@/assets/icons/icon-stats-not-started.svg";
+import TotalIcon from "@/assets/icons/icon-stats-total.svg";
 
 import type { CardStructureItem } from "./extensions/models";
 

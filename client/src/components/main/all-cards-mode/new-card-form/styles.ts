@@ -8,7 +8,8 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  outline: 1px solid var(--colors-neutral-900, #2e1401);
+  border-top: 1px solid var(--colors-neutral-900, #2e1401);
+  border-left: 1px solid var(--colors-neutral-900, #2e1401);
   border-right: 3px solid var(--colors-neutral-900, #2e1401);
   border-bottom: 3px solid var(--colors-neutral-900, #2e1401);
   border-radius: 16px;
