@@ -1,7 +1,7 @@
 {
-  "name": "server",
+  "name": "flash-cards-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Express/PostgreSQL API server for the Flash Cards learning app",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,8 +9,8 @@
     "seed": "node db/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["flashcards", "express", "postgresql", "nodejs"],
+  "author": "Victor Tyslenko",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
